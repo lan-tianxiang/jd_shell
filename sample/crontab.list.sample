@@ -1,0 +1,21 @@
+ENV_PATH=
+
+# 更新lxk0301大佬的js脚本和shell脚本，并替换相关参数：
+22 * * * * bash MY_PATH/git_pull.sh >> MY_PATH/log/git_pull.log 2>&1
+
+# 删除 RmLogDaysAgo 指定天数以前的旧日志，本行为不记录日志：
+57 13 * * * bash MY_PATH/rm_log.sh >/dev/null 2>&1
+
+# 导出所有互助码清单，日志在log/export_sharecodes下(可通过面板或者日记查看)：
+48 * * * * bash MY_PATH/export_sharecodes.sh
+
+# 重启挂机脚本：
+# 33 13 * * * bash MY_PATH/jd.sh hangup
+
+# 自定义定时区，添加自己其他想加的定时任务:
+
+
+# 运行lxk0301大佬的js脚本，仅列出长期任务作初始化用，AutoAddCron=true时，将自动添加短期任务。
+# 请保留任务名称中的前缀"jd_"，去掉后缀".js"，如果有些任务你不想运行，注释掉就好了，不要删除。否则会重新添加上。
+# 非lxk0301/jd_scripts仓库中的脚本不能以“jd_”、“jr_”、“jx_”开头。请在最后保留一个空行。
+5 9 * * * bash MY_PATH/jd.sh jd_bean_change
