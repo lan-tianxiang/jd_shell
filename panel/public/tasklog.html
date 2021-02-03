@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在线编辑工具</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/metismenu/dist/metisMenu.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/elektron/dist/elektron.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs"></script>
+    <script src="https://unpkg.com/metismenu"></script>
+
+</head>
+
+<body>
+    <div class="log-container">
+        <div class="diffs">
+            <nav>
+                <ul>
+                    <li><a href="./home">首页</a></li>
+                    <li><a href="./crontab">定时设定</a></li>
+                    <li><a href="./diff">对比工具</a></li>
+                    <li><a href="./shareCode">Share Code</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
+                    <li class="active"><a href="./log">日志查询</a></li>
+                    <li><a href="./changepwd">修改密码</a></li>
+                    <li><a href="./logout">退出</a></li>
+                </ul>
+            </nav>
+            <header>
+                <h1>日志查询</h1>
+            </header>
+
+            <div class="elk-app">
+                <div class="elk-wrap">
+                    <div class="elk-container flex-column flex-md-row">
+                        <aside class="elk-side is-open bg-light border-right position-relative" id="elk-side">
+                            <div class="elk-side-content ">
+                                <div class="elk-side-nav">
+                                    <ul class="nav flex-column" id="menu1">
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </aside>
+                        <div class="elk-main bg-log">
+                            <div class="elk-main-content">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <pre><code class="lang-sh" id="logDetail">  你还没有选择日志文件！</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    
+    <script>
+        var qrcode, userCookie;
+        $(document).ready(function () {
+            $.get("./api/logs", function (data) {
+                var dirs = data.dirs;
+                var navHtml = "";
+                for (let index in dirs) {
+                    var dirName = dirs[index].dirName;
+                    var row = "<li class=\"nav-item\">\n" +
+                        "                                            <a class=\"nav-link text-dark has-arrow\" href=\"#\">" + dirName+"</a>\n" +
+                        "                                            <ul class=\"nav flex-column pl-1\">\n" +
+                        "                                                <li class=\"nav-item\">\n";
+                    for (let filesKey in dirs[index].files) {
+                        var fileName = dirs[index].files[filesKey];
+                        row = row + "                                                    <a class=\"nav-link\" href=\"javascript:logDetail('"+dirName+"','"+dirs[index].files[filesKey]+"')\">"+fileName+"</a>\n"
+                    }
+                        row = row +
+                        "                                                </li>\n" +
+                        "                                            </ul>\n" +
+                        "                                        </li>";
+                    navHtml += row;
+                }
+                $('#menu1').html(navHtml);
+                $('#menu1').metisMenu();
+            });
+        });
+        function logDetail(dir, file) {
+            $.get("./api/logs/" + dir + "/" + file, function (data) {
+                $('#logDetail').text(data)
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

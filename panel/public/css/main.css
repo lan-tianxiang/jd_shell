@@ -1,0 +1,257 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+
+}
+
+h1,
+ul {
+    margin: .3em 0 .3em 0;
+    font-size: 1.5rem;
+    padding-right: 1rem;
+}
+
+h4 {
+    margin-top: 0.5em;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a:link,
+nav ul li a:visited,
+nav ul li a:active {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.8rem;
+    color: white;
+    text-decoration: none;
+    background-color: #282a36;
+    border-bottom-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #6D8A88;
+}
+
+nav .active a {
+    background-color: #6D8A88 !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 .5em;
+}
+
+.container p {
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5em;
+}
+
+.diffs {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.diffs header {
+    margin-top: 1rem;
+}
+
+.diffs header * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.diffs .compare-wrapper,
+.diffs .wrapper {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.diffs .compare-wrapper #compare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* Auto-height fix */
+
+.wrapper .CodeMirror {
+    position: absolute;
+    height: calc(100% - 0.5em);
+    width: 100%
+}
+
+.mergely-column .CodeMirror {
+    height: 100%;
+}
+
+.sources a {
+    font-size: 1rem;
+}
+
+/* Login page */
+.login-form {
+    width: 300px;
+    margin: 6rem auto 0 auto;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+.login-form h1 {
+    text-align: center;
+    color: #4d4d4d;
+    font-size: 24px;
+    padding: 20px 0 20px 0;
+}
+
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #6D8A88;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#qrcontainer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, .8);
+    text-align: center;
+    transition: all 0.3s;
+}
+#qrcontainer.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+#qrcontainer .qframe {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: #6D8A88 1px solid;
+    -webkit-box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+#qrcontainer .qframe #refresh_qrcode{
+    width: 256px;
+    height: 256px;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 1rem;
+    top: 1rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#qrcontainer .qframe #refresh_qrcode.hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+#qrcontainer .qframe #refresh_qrcode h3{
+    font-weight: normal;
+}
+#qrcontainer .qframe #refresh_qrcode .refresh{
+    display: block;
+    background: #e4393c;
+    width: 80px;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    opacity: 1;
+    z-index: 19;
+    color: #fbfbfb;
+    text-decoration: none;
+    cursor: pointer;
+}
+#qrcontainer .qframe .info {
+    padding: 1rem 0 0 0;
+}
+
+@media screen and (max-width: 480px) {
+
+    nav ul li a:link,
+    nav ul li a:visited,
+    nav ul li a:active {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.5rem;
+        margin: 0;
+
+    }
+
+    .container p {
+        font-size: 0.75rem;
+        margin: 0;
+        line-height: 1.5em;
+    }
+}
+
+.log-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 .5em;
+}
+@media (min-width: 992px) {
+    .elk-app {
+        height: 100%;
+    }
+    .elk-side {
+        width: 20rem;
+    }
+    .elk-container, .elk-main, .elk-side {
+        overflow-y: auto;
+    }
+}
+.elk-app, body > .ember-view {
+    margin-top: 8rem;
+}
+.bg-log {
+    background: #f5f2f0;
+}
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+.text-dark {
+    color: #343a40!important;
+}
+.nav-link {
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}

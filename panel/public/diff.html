@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在线对比合并工具</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/codemirror.min.js"></script>
+    <script type="text/javascript" src="./js/shell.js"></script>
+    <script type="text/javascript" src="./js/mergely.js"></script>
+    <script type="text/javascript" src="./js/sweetalert2.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/codemirror.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/mergely.css">
+    <link rel="stylesheet" type="text/css" href="./css/twilight.css">
+    <link rel="stylesheet" type="text/css" href="./css/dracula.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="diffs">
+            <nav>
+                <ul>
+                    <li><a href="./home">首页</a></li>
+                    <li><a href="./crontab" >定时设定</a></li>
+                    <li class="active"><a href="./diff">对比工具</a></li>
+                    <li><a href="./shareCode">Share Code</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
+                    <li><a href="./log">日志查询</a></li>
+                    <li><a href="./changepwd" >修改密码</a></li>
+                    <li><a href="./logout" >退出</a></li>
+                </ul>
+            </nav>
+            <header>
+                <h1>在线对比合并工具</h1>
+                <button id="prev" title="上一个差异">上一个差异</button>
+                <button id="next" title="下一个差异">下一个差异</button>
+                <button id="wrap" title="切换换行">切换换行</button>
+                <button id="save" title="保存">保存 config.sh</button>
+            </header>
+            <h4>左侧为 config.sh ，右侧为 config.sh.sample</h4>
+            <div class="compare-wrapper">
+                <div id="compare">
+                </div>
+            </div>
+        </div>
+        <div class="sources">
+            <p>查看源文件，注意将浏览器编码切换为 UTF-8 。</p>
+            <ul>
+                <li><a id="file1" href="./api/config/config">查看 config.sh</a></li>
+                <li><a id="file2" href="./api/config/sample">查看 config.sh.sample</a></li>
+            </ul>
+        </div>
+        <br>
+    </div>
+    <script>
+        var comp = $('#compare');
+
+        function downloadFile(url, callback) {
+            $.get(url, function (data) {
+                callback(data);
+            });
+        }
+        let timeStamp = (new Date()).getTime()
+        comp.mergely({
+            cmsettings: {
+                readOnly: false,
+                lineWrapping: true,
+                mode: "shell",
+                theme: 'dracula'
+            },
+            wrap_lines: false,
+
+            //Doesn't do anything?
+            //autoresize: true,
+
+            editor_width: 'calc(50% - 25px)',
+            editor_height: '100%',
+
+            lhs: function (setValue) {
+                downloadFile('./api/config/config?t='+timeStamp, setValue);
+            },
+            rhs: function (setValue) {
+                downloadFile('./api/config/sample?t='+timeStamp, setValue);
+            }
+        });
+
+        function changeOptions(changer) {
+            var options = comp.mergely('options');
+            changer(options);
+
+            comp.mergely('options', options);
+            //comp.mergely('update');
+        }
+
+        $('#prev').click(function () {
+            comp.mergely('scrollToDiff', 'prev');
+        });
+        $('#next').click(function () {
+            comp.mergely('scrollToDiff', 'next');
+        });
+        $('#wrap').click(function () {
+            changeOptions(function (x) {
+                x.wrap_lines = !x.wrap_lines;
+            });
+        });
+        $('#save').click(function () {
+            var confContent = comp.mergely('get', 'lhs');
+            let timeStamp = (new Date()).getTime()
+            $.post('./api/save?t='+timeStamp, { content: confContent, name: "config.sh" }, function (data) {
+                let icon = (data.err == 0) ? "success" : "error"
+                    Swal.fire({
+                        title:data.title,
+                        text: data.msg,
+                        icon: icon
+                    }).then((result) => {
+                        window.location.reload(true);
+                    })
+            });
+        });
+    </script>
+</body>
+
+</html>

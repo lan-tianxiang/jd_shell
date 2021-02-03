@@ -1,0 +1,21 @@
+name: "构建Github镜像"
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 构建Github镜像
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+      - name: Build and publish image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: evinedeng/jd
+          dockerFile: docker/github/Dockerfile
+          platform: linux/amd64,linux/arm64,linux/arm/v7
+          tag: latest,github
+          dockerUser: ${{ secrets.DOCKER_USERNAME }}
+          dockerPassword: ${{ secrets.DOCKER_PASSWORD }}

@@ -1,0 +1,58 @@
+# 在crontab.list中，家目录请不要写成 ~ ，必须输入家目录的完整路径 /data/data/com.termux/files/home
+PATH=/data/data/com.termux/files/usr/bin
+
+# 更新lxk0301大佬的js脚本和EvineDeng的shell脚本，日志记录在脚本目录下log文件夹中：
+55 5-23 * * * bash /data/data/com.termux/files/home/storage/shared/jd/git_pull.sh >> /data/data/com.termux/files/home/storage/shared/jd/log/git_pull.log 2>&1
+
+# 删除 RmLogDaysAgo 指定天数以前的旧日志，本行为不记录日志：
+57 13 * * * bash /data/data/com.termux/files/home/storage/shared/jd/rm_log.sh >/dev/null 2>&1
+
+# 导出所有互助码清单，日志在log/export_sharecodes下：
+48 5 * * * bash /data/data/com.termux/files/home/storage/shared/jd/export_sharecodes.sh
+
+# 重启挂机脚本，请注意，费电！！如想使用请自行解除注释！
+# 33 13 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh hangup
+
+# 运行lxk0301大佬的js脚本，仅列出长期任务作初始化用，AutoAddCron=true时，将自动添加短期任务。
+# 请保留任务名称中的前缀"jd_"，去掉后缀".js"，如果有些任务你不想运行，注释掉就好了，不要删除。
+# 非lxk0301/jd_scripts仓库中的脚本不能以“jd_”、“jr_”、“jx_”开头。请在最后保留一个空行。
+5 9 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_bean_change
+28 5 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_bean_home
+4 0,9 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_bean_sign
+0,30 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_blueCoin
+18 8,12,18 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_bookshop
+19 8 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_car
+17 9,22 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_cash
+0 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_car_exchange
+2 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_club_lottery
+27 13 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_crazy_joy
+54 2-23/3 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_daily_egg
+20 * * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_dreamFactory
+29 7,12,18 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_fruit
+7 7 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_get_share_code
+36 * * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_jdfactory
+14 11 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_jdzz
+6 0,8,9,13,18,22 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_joy
+*/20 0-22 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_joy_feedPets
+0 0,8,12,16 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_joy_reward
+18 11,14 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_joy_run
+0 0,6 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_joy_steal
+0 9,12,18 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_jxnc
+32 7 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_kd
+13-23/5 13 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_live
+15 1 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_lotteryMachine
+40 */4 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_moneyTree
+20 0,20 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_necklace
+10 7,12,18 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_pet
+25 * * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_pigPet
+35 7-22 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_plantBean
+11 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_rankingList
+1 1 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_redPacket
+0 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_shop
+16 0 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_small_home
+35 */3 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_speed
+9 1-23/5 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_superMarket
+25 9 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_syj
+41 14 * * 4 bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_unbind
+45 23 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jd_unsubscribe
+47 8 * * * bash /data/data/com.termux/files/home/storage/shared/jd/jd.sh jx_sign
