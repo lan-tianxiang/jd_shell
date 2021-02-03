@@ -1,6 +1,5 @@
 ## 请仔细阅读 [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释，95%的问题都能找到答案
 
-E大的Wiki没有获取到，方法还是和以前一样
 
 ## 如有二次使用，请注明来源
 
