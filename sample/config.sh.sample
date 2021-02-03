@@ -3,7 +3,7 @@
 ## Update Content: 增加京东压岁钱互助码
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
-## 如需更新，请参考WIKI（https://github.com/EvineDeng/jd-base/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
+## 如需更新，请参考WIKI（https://github.com/lan-tianxiang/jd_shell/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
 
 ################################## 说明 ##################################
 ## 以下配置中，带有 export 申明的，均由LXK9301大佬定义，详见：https://github.com/LXK9301/jd_scripts/blob/master/githubAction.md#%E4%B8%8B%E6%96%B9%E6%8F%90%E4%BE%9B%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84-secrets%E5%85%A8%E9%9B%86%E5%90%88
@@ -61,14 +61,14 @@ AutoAddCron="true"
 
 ################################## 定义删除日志的时间（选填） ##################################
 ## 定义在运行删除旧的日志任务时，要删除多少天以前的日志，请输入正整数，不填则禁用删除日志的功能
-RmLogDaysAgo="7"
+RmLogDaysAgo="1"
 
 
 ################################## 定义随机延迟启动任务（选填） ##################################
 ## 如果任务不是必须准点运行的任务，那么给它增加一个随机延迟，由你定义最大延迟时间，单位为秒，如 RandomDelay="300" ，表示任务将在 1-300 秒内随机延迟一个秒数，然后再运行
 ## 在crontab.list中，在每小时第0-2分、第30-31分、第59分这几个时间内启动的任务，均算作必须准点运行的任务，在启动这些任务时，即使你定义了RandomDelay，也将准点运行，不启用随机延迟
 ## 在crontab.list中，除掉每小时上述时间启动的任务外，其他任务在你定义了 RandomDelay 的情况下，一律启用随机延迟，但如果你按照Wiki教程给某些任务添加了 "now"，那么这些任务也将无视随机延迟直接启动
-RandomDelay="300"
+RandomDelay="6"
 
 
 ################################## 定义User-Agent（选填） ##################################
@@ -138,12 +138,16 @@ MyFruit6=""
 MyFruitA=""
 MyFruitB=""
 
-ForOtherFruit1=""
-ForOtherFruit2=""
-ForOtherFruit3=""
-ForOtherFruit4=""
-ForOtherFruit5=""
-ForOtherFruit6=""
+ForOtherFruit1="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit2="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit3="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit4="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit5="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit6="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit7="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit8="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit9="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
+ForOtherFruit10="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}"
 
 
 ################################## 定义东东萌宠互助（选填） ##################################
@@ -157,12 +161,16 @@ MyPet6=""
 MyPetA=""
 MyPetB=""
 
-ForOtherPet1=""
-ForOtherPet2=""
-ForOtherPet3=""
-ForOtherPet4=""
-ForOtherPet5=""
-ForOtherPet6=""
+ForOtherPet1="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet2="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet3="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet4="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet5="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet6="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet9="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
+ForOtherPet10="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}"
 
 
 ################################## 定义种豆得豆互助（选填） ##################################
@@ -176,12 +184,16 @@ MyBean6=""
 MyBeanA=""
 MyBeanB=""
 
-ForOtherBean1=""
-ForOtherBean2=""
-ForOtherBean3=""
-ForOtherBean4=""
-ForOtherBean5=""
-ForOtherBean6=""
+ForOtherBean1="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean2="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean3="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean4="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean5="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean6="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean7="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean8="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean9="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
+ForOtherBean10="${MyBean1}@${MyBean2}@${MyBean3}@${MyBean4}@${MyBean5}"
 
 
 ################################## 定义京喜工厂互助（选填） ##################################
@@ -195,12 +207,16 @@ MyDreamFactory6=""
 MyDreamFactoryA=""
 MyDreamFactoryB=""
 
-ForOtherDreamFactory1=""
-ForOtherDreamFactory2=""
-ForOtherDreamFactory3=""
-ForOtherDreamFactory4=""
-ForOtherDreamFactory5=""
-ForOtherDreamFactory6=""
+ForOtherDreamFactory1="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory2="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory3="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory4="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory5="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory6="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory7="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory8="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory9="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
+ForOtherDreamFactory10="${MyDreamFactory1}@${MyDreamFactory2}@${MyDreamFactory3}@${MyDreamFactory4}@${MyDreamFactory5}"
 
 
 ################################## 定义东东工厂互助（选填） ##################################
@@ -214,12 +230,16 @@ MyJdFactory6=""
 MyJdFactoryA=""
 MyJdFactoryB=""
 
-ForOtherJdFactory1=""
-ForOtherJdFactory2=""
-ForOtherJdFactory3=""
-ForOtherJdFactory4=""
-ForOtherJdFactory5=""
-ForOtherJdFactory6=""
+ForOtherJdFactory1="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory2="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory3="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory4="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory5="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory6="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory7="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory8="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory9="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
+ForOtherJdFactory10="${MyJdFactory1}@${MyJdFactory2}@${MyJdFactory3}@${MyJdFactory4}@${MyJdFactory5}"
 
 
 ################################## 定义京东赚赚互助（选填） ##################################
@@ -233,12 +253,16 @@ MyJdzz6=""
 MyJdzzA=""
 MyJdzzB=""
 
-ForOtherJdzz1=""
-ForOtherJdzz2=""
-ForOtherJdzz3=""
-ForOtherJdzz4=""
-ForOtherJdzz5=""
-ForOtherJdzz6=""
+ForOtherJdzz1="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz2="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz3="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz4="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz5="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz6="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz7="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz8="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz9="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
+ForOtherJdzz10="${MyJdzz1}@${MyJdzz2}@${MyJdzz3}@${MyJdzz4}@${MyJdzz5}"
 
 
 ################################## 定义疯狂的JOY互助（选填） ##################################
@@ -252,12 +276,16 @@ MyJoy6=""
 MyJoyA=""
 MyJoyB=""
 
-ForOtherJoy1=""
-ForOtherJoy2=""
-ForOtherJoy3=""
-ForOtherJoy4=""
-ForOtherJoy5=""
-ForOtherJoy6=""
+ForOtherJoy1="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy2="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy3="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy4="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy5="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy6="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy7="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy8="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy9="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
+ForOtherJoy10="${MyJoy1}@${MyJoy2}@${MyJoy3}@${MyJoy4}@${MyJoy5}"
 
 
 ################################## 定义京喜农场互助（选填） ##################################
@@ -275,12 +303,16 @@ MyJxnc6=''
 MyJxncA=''
 MyJxncB=''
 
-ForOtherJxnc1=""
-ForOtherJxnc2=""
-ForOtherJxnc3=""
-ForOtherJxnc4=""
-ForOtherJxnc5=""
-ForOtherJxnc6=""
+ForOtherJxnc1="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc2="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc3="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc4="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc5="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc6="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc7="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc8="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc9="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
+ForOtherJxnc10="${MyJxnc1}@${MyJxnc2}@${MyJxnc3}@${MyJxnc4}@${MyJxnc5}"
 
 
 ################################## 定义京喜农场TOKEN（选填） ##################################
@@ -307,12 +339,16 @@ MyBookShop6=""
 MyBookShopA=""
 MyBookShopB=""
 
-ForOtherBookShop1=""
-ForOtherBookShop2=""
-ForOtherBookShop3=""
-ForOtherBookShop4=""
-ForOtherBookShop5=""
-ForOtherBookShop6=""
+ForOtherBookShop1="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop2="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop3="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop4="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop5="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop6="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop7="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop8="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop9="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
+ForOtherBookShop10="${MyBookShop1}@${MyBookShop2}@${MyBookShop3}@${MyBookShop4}@${MyBookShop5}"
 
 
 ################################## 定义签到领现金互助（选填） ##################################
@@ -326,12 +362,16 @@ MyCash6=""
 MyCashA=""
 MyCashB=""
 
-ForOtherCash1=""
-ForOtherCash2=""
-ForOtherCash3=""
-ForOtherCash4=""
-ForOtherCash5=""
-ForOtherCash6=""
+ForOtherCash1="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash2="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash3="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash4="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash5="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash6="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash7="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash8="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash9="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
+ForOtherCash10="${MyCash1}@${MyCash2}@${MyCash3}@${MyCash4}@${MyCash5}"
 
 
 ################################## 定义闪购盲盒互助（选填） ##################################
@@ -385,12 +425,16 @@ MyNianPk6=""
 MyNianPkA=""
 MyNianPkB=""
 
-ForOtherNianPk1=""
-ForOtherNianPk2=""
-ForOtherNianPk3=""
-ForOtherNianPk4=""
-ForOtherNianPk5=""
-ForOtherNianPk6=""
+ForOtherNianPk1="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk2="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk3="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk4="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk5="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk6="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk7="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk8="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk9="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
+ForOtherNianPk10="${MyNianPk1}@${MyNianPk2}@${MyNianPk3}@${MyNianPk4}@${MyNianPk5}"
 
 
 ################################## 定义神仙书院活动互助（选填） ##################################
@@ -465,12 +509,16 @@ MynewYear6=""
 MynewYearA=""
 MynewYearB=""
 
-ForOthernewYear1=""
-ForOthernewYear2=""
-ForOthernewYear3=""
-ForOthernewYear4=""
-ForOthernewYear5=""
-ForOthernewYear6=""
+ForOthernewYear1="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear2="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear3="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear4="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear5="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear6="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear7="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear8="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear9="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
+ForOthernewYear10="${MynewYear1}@${MynewYear2}@${MynewYear3}@${MynewYear4}@${MynewYear5}"
 ################################## 定义东东超市蓝币兑换数量（选填） ##################################
 ## 东东超市蓝币兑换，可用值包括：
 ## 一、0：表示不兑换京豆，这也是js脚本的默认值
@@ -478,7 +526,7 @@ ForOthernewYear6=""
 ## 三、1000：表示兑换1000个京豆
 ## 四、可兑换清单的商品名称，输入能跟唯一识别出来的关键词即可，比如：MARKET_COIN_TO_BEANS="抽纸"
 ## 注意：有些比较贵的实物商品京东只是展示出来忽悠人的，即使你零点用脚本去抢，也会提示没有或提示已下架
-export MARKET_COIN_TO_BEANS="0"
+export MARKET_COIN_TO_BEANS="1000"
 
 
 ################################## 定义东东超市蓝币成功兑换奖品是否静默运行（选填） ##################################
@@ -523,14 +571,14 @@ export FRUIT_BEAN_CARD=""
 ## 你期望的宠汪汪每次喂食克数，只能填入10、20、40、80，默认为10
 ## 如实际持有食物量小于所设置的克数，脚本会自动降一档，直到降无可降
 ## 具体情况请自行在宠汪汪游戏中去查阅攻略
-export JOY_FEED_COUNT=""
+export JOY_FEED_COUNT="80"
 
 
 ################################## 定义宠汪汪兑换京豆数量（选填） ##################################
 ## 目前的可用值包括：0、20、500、1000，其中0表示为不自动兑换京豆，如不设置，将默认为"20"
 ## 不同等级可兑换不同数量的京豆，详情请见宠汪汪游戏中兑换京豆选项
 ## 500、1000的京豆每天有总量限制，设置了并且你也有足够积分时，也并不代表就一定能抢到
-export JD_JOY_REWARD_NAME=""
+export JD_JOY_REWARD_NAME="500"
 
 
 ################################## 定义宠汪汪兑换京豆是否静默运行（选填） ##################################
@@ -628,10 +676,10 @@ export UN_BIND_STOP_CARD=""
 
 ################################## 疯狂的JOY（选填） ##################################
 ## 疯狂的JOY循环助力，"true" 表示循环助力，"false" 表示不循环助力，默认 "false"
-export JDJOY_HELPSELF=""
+export JDJOY_HELPSELF="true"
 
 ## 疯狂的JOY京豆兑换，目前最小值为500/1000京豆，默认为 "0" 不开启京豆兑换
-export JDJOY_APPLYJDBEAN=""
+export JDJOY_APPLYJDBEAN="2000"
 
 ## 疯狂的JOY自动购买什么等级的JOY，如需要使用请自行解除注释
 # export BUY_JOY_LEVEL=""
@@ -639,7 +687,7 @@ export JDJOY_APPLYJDBEAN=""
 
 ################################## 定义是否自动加购物车（选填） ##################################
 ## 口袋书店和东东小窝有些任务需要将商品加进购物车才能完成，默认 "false" 不做这些任务，如想做，请设置为 "true"
-export PURCHASE_SHOPS=""
+export PURCHASE_SHOPS="true"
 
 
 ################################## 你所处的经纬度（选填） ##################################
