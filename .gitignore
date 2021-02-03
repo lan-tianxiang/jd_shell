@@ -1,6 +1,9 @@
-config*
+panel/node_modules*
+panel/yarn.lock
+panel/package-lock.json
 scripts*
 log*
+config*
 version
 new_task
 drop_task
