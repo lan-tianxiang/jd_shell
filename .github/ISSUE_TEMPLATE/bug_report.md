@@ -9,8 +9,8 @@ assignees: ''
 <!--
 反馈前请阅读
 
-- 常见问题： https://github.com/EvineDeng/jd-base/wiki/FAQ
-- 使用教程： https://github.com/EvineDeng/jd-base/wiki/Documents
+- 常见问题： https://github.com/lan-tianxiang/jd_shell/wiki/FAQ
+- 使用教程： https://github.com/lan-tianxiang/jd_shell/wiki/Documents
 - 请先在 issues 页面搜索你的问题，包括已关闭的issue，很可能已被解决。
 -->
 
