@@ -3,7 +3,7 @@
 ## Update Content: 新增环球挑战赛填写区域  活动时间：2021-02-02 至 2021-02-22
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
-## 如需更新，请参考WIKI（https://github.com/EvineDeng/jd-base/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
+## 如需更新，请参考WIKI（https://github.com/lan-tianxiang/jd_shell/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
 
 ################################## 说明 ##################################
 ## 以下配置中，带有 export 申明的，均由LXK9301大佬定义，详见：https://github.com/LXK9301/jd_scripts/blob/master/githubAction.md#%E4%B8%8B%E6%96%B9%E6%8F%90%E4%BE%9B%E4%BD%BF%E7%94%A8%E5%88%B0%E7%9A%84-secrets%E5%85%A8%E9%9B%86%E5%90%88
