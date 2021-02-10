@@ -107,7 +107,7 @@ function Combin_All {
   export JDNIAN_SHARECODES=$(Combin_Sub ForOtherNian)
   export JD818_SHARECODES=$(Combin_Sub ForOther5g)
   export JDNY_SHARECODES=$(Combin_Sub ForOthernewYear)
-  if [ $[10#$(date -u "+%H")] == 12]; then
+  if [ $[ 10#$(date -u "+%H") ] == 12 ]; then
     export JDNIANPK_SHARECODES=$(Combin_Sub ForOtherNianPk)
   else
     export JDNIANPK_SHARECODES=$(Combin_Sub ForOtherNianPk)
