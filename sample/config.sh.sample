@@ -1,6 +1,6 @@
-## Version: v3.26.0
-## Date: 2021-02-01
-## Update Content: 增加京东压岁钱互助码
+## Version: v3.27.0
+## Date: 2021-02-10
+## Update Content: 新增环球挑战赛填写区域  活动时间：2021-02-02 至 2021-02-22
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
 ## 如需更新，请参考WIKI（https://github.com/EvineDeng/jd-base/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
@@ -471,6 +471,30 @@ ForOthernewYear3=""
 ForOthernewYear4=""
 ForOthernewYear5=""
 ForOthernewYear6=""
+
+################################## 定义京东环球挑战赛活动互助（选填） ##################################
+## 具体填法及要求详见：https://github.com/lan-tianxiang/jd_shell/wiki/
+## 环球挑战赛
+## 活动时间：2021-02-02 至 2021-02-22
+## 1个号可以助力5人，需要5人助力，如每天跑满能换1000+京豆
+## 多个账号会相互互助
+Myglobal1=""
+Myglobal2=""
+Myglobal3=""
+Myglobal4=""
+Myglobal5=""
+Myglobal6=""
+MyglobalA=""
+MyglobalB=""
+
+ForOtherglobal1=""
+ForOtherglobal2=""
+ForOtherglobal3=""
+ForOtherglobal4=""
+ForOtherglobal5=""
+ForOtherglobal6=""
+
+
 ################################## 定义东东超市蓝币兑换数量（选填） ##################################
 ## 东东超市蓝币兑换，可用值包括：
 ## 一、0：表示不兑换京豆，这也是js脚本的默认值
