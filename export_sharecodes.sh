@@ -12,8 +12,8 @@ LogDir=${ShellDir}/log
 Tips="从日志中未找到任何互助码..."
 
 ## 所有有互助码的活动，只需要把脚本名称去掉前缀jd_后列在Name1中，将其中文名称列在Name2中即可。Name1和Name2中两个名称必须一一对应。
-Name1=(fruit pet plantBean dreamFactory jdfactory crazy_joy jdzz jxnc bookshop cash immortal nh sgmh gyec xxl xxl_gh nian 5g newYearMoney)
-Name2=(东东农场 东东萌宠 京东种豆得豆 京喜工厂 东东工厂 crazyJoy任务 京东赚赚 京喜农场 口袋书店 签到领现金 神仙书院 年货节 闪购盲盒 工业品爱消除 东东爱消除 个护爱消除 炸年兽 5G狂欢城 京东压岁钱)
+Name1=(fruit pet plantBean dreamFactory jdfactory crazy_joy jdzz jxnc bookshop cash immortal nh sgmh gyec xxl xxl_gh nian 5g newYearMoney global)
+Name2=(东东农场 东东萌宠 京东种豆得豆 京喜工厂 东东工厂 crazyJoy任务 京东赚赚 京喜农场 口袋书店 签到领现金 神仙书院 年货节 闪购盲盒 工业品爱消除 东东爱消除 个护爱消除 炸年兽 5G狂欢城 京东压岁钱 环球挑战赛)
 ## 下面是组队PK的互助码
 NameA=(nian)
 NameB=(炸年兽组队PK)
