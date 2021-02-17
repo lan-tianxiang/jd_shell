@@ -93,9 +93,9 @@ function Combin_Sub {
 ## 组合Cookie、Token与互助码，用户自己的放在前面，我的放在后面
 function Combin_All {
   export JD_COOKIE=$(Combin_Sub Cookie)
-  export jdFruitShareCodes=$(Combin_Sub ForOtherFruit)
-  export jdPetShareCodes=$(Combin_Sub ForOtherPet)
-  export jdPlantBeanShareCodes=$(Combin_Sub ForOtherBean)
+  export FRUITSHARECODES=$(Combin_Sub ForOtherFruit)
+  export PETSHARECODES=$(Combin_Sub ForOtherPet)
+  export PLANT_BEAN_SHARECODES=$(Combin_Sub ForOtherBean)
   export DREAM_FACTORY_SHARE_CODES=$(Combin_Sub ForOtherDreamFactory)
   export DDFACTORY_SHARECODES=$(Combin_Sub ForOtherJdFactory)
   export JDZZ_SHARECODES=$(Combin_Sub ForOtherJdzz)
