@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-## Author: Evine Deng
-## Source: https://github.com/EvineDeng/jd-base
+## Author: lan-tianxiang
+## Source: https://github.com/lan-tianxiang/jd_shell
 ## Modified： 2021-01-22
 ## Version： v3.6.1
 
