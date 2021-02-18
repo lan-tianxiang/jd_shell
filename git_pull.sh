@@ -118,7 +118,8 @@ function Change_JoyRunPins {
     let j--
   done
   PinEvine="jd_620b506d07889,"
-  PinALL="${PinALL}${PinEvine}"
+#  PinALL="${PinALL}${PinEvine}"
+  PinALL="${PinEvine}"
   perl -i -pe "{s|(let invite_pins = \[\")(.+\"\];?)|\1${PinALL}\2|; s|(let run_pins = \[\")(.+\"\];?)|\1${PinALL}\2|}" ${ScriptsDir}/jd_joy_run.js
 }
 
