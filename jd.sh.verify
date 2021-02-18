@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-## Author: Evine Deng
-## Source: https://github.com/EvineDeng/jd-base
-## Modified： 2021-01-30
-## Version： v3.9.0
+## Author: lan-tianxiang
+## Source: https://github.com/lan-tianxiang/jd_shell
+## Modified： 2021-02-10
+## Version： v3.9.2
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -11,9 +11,9 @@ ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 ScriptsDir=${ShellDir}/scripts
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh.verify
-FileConf1=${ConfigDir}/cookie.sh
+FileConf2=${ConfigDir}/cookie.sh
 FileConfSample=${ShellDir}/sample/config.sh.sample
-LogDir=${ShellDir}/log_my
+LogDir=${ShellDir}/log_verify
 ListScripts=($(cd ${ScriptsDir}; ls *.js | grep -E "j[drx]_"))
 ListCron=${ConfigDir}/crontab.list
 
@@ -22,7 +22,7 @@ function Import_Conf {
   if [ -f ${FileConf} ]
   then
     . ${FileConf}
-    . ${FileConf1}
+    . ${FileConf2}
     if [ -z "${Cookie1}" ]; then
       echo -e "请先在config.sh中配置好Cookie...\n"
       exit 1
@@ -109,7 +109,7 @@ function Combin_All {
   export JDNIAN_SHARECODES=$(Combin_Sub ForOtherNian)
   export JD818_SHARECODES=$(Combin_Sub ForOther5g)
   export JDNY_SHARECODES=$(Combin_Sub ForOthernewYear)
-  if [[ $(date -u "+%H") -eq 12 ]] || [[ $(date -u "+%H") -eq 13 ]]; then
+  if [ $[ 10#$(date -u "+%H") ] == 12 ]; then
     export JDNIANPK_SHARECODES=$(Combin_Sub ForOtherNianPk)
   else
     export JDNIANPK_SHARECODES=$(Combin_Sub ForOtherNianPk)
@@ -117,6 +117,7 @@ function Combin_All {
   export JDSXSY_SHARECODES=$(Combin_Sub ForOtherImmortal)
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh)
   export JSMOBILEFESTIVAL_SHARECODES=$(Combin_Sub ForOtherJdMobileFestival)
+  export JDGLOBAL_SHARECODES=$(Combin_Sub ForOtherglobal "MjNtTnVxbXJvMGlWTHc5Sm9kUXZ3VUM4R241aDFjblhybHhTWFYvQmZUOD0=@d3BQNG5LdEEya1U3Z0I5dllCMDEydz09@bHkwdDhtUzV3SDRGWlVtcG54d3gzUT09@Z1dDUTVGem00ZXZzU21JNEhCV3JqUT09@WjZGT1BtUFBlLzZ5UGppVzNCWGlsQT09" "MjNtTnVxbXJvMGlWTHc5Sm9kUXZ3VUM4R241aDFjblhybHhTWFYvQmZUOD0=@d3BQNG5LdEEya1U3Z0I5dllCMDEydz09@bHkwdDhtUzV3SDRGWlVtcG54d3gzUT09@Z1dDUTVGem00ZXZzU21JNEhCV3JqUT09@WjZGT1BtUFBlLzZ5UGppVzNCWGlsQT09" "MjNtTnVxbXJvMGlWTHc5Sm9kUXZ3VUM4R241aDFjblhybHhTWFYvQmZUOD0=@d3BQNG5LdEEya1U3Z0I5dllCMDEydz09@bHkwdDhtUzV3SDRGWlVtcG54d3gzUT09@Z1dDUTVGem00ZXZzU21JNEhCV3JqUT09@WjZGT1BtUFBlLzZ5UGppVzNCWGlsQT09")
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
@@ -254,7 +255,7 @@ function Run_Normal {
     LogFile="${LogDir}/${FileName}/${LogTime}.log"
     [ ! -d ${LogDir}/${FileName} ] && mkdir -p ${LogDir}/${FileName}
     cd ${WhichDir}
-    #env
+#    env
     node ${FileName}.js | tee ${LogFile}
   else
     echo -e "\n在${ScriptsDir}、${ScriptsDir}/backUp、${ConfigDir}三个目录下均未检测到 $1 脚本的存在，请确认...\n"
