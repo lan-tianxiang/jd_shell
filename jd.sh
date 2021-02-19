@@ -2,8 +2,8 @@
 
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
-## Modified： 2021-02-10
-## Version： v3.9.2
+## Modified： 2021-02-19
+## Version： v3.9.3
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -169,7 +169,7 @@ function Help {
   echo -e "1. bash ${HelpJd} xxx       # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
   echo -e "2. bash ${HelpJd} xxx now   # 无论是否设置了随机延迟，均立即运行"
   echo -e "3. bash ${HelpJd} hangup    # 重启挂机程序"
-  echo -e "4. bash ${HelpJd} panelinit # 初始化控制面板(首次开启)"
+  echo -e "4. bash ${HelpJd} panelinit # 开启控制面板"
   echo -e "5. bash ${HelpJd} resetpwd  # 重置控制面板用户名和密码"
   echo -e "\n针对用法1、用法2中的\"xxx\"，无需输入后缀\".js\"，另外，如果前缀是\"jd_\"的话前缀也可以省略。"
   echo -e "比如：   bash jd.sh jd_bean_change"
@@ -263,6 +263,12 @@ function panelinit {
       sleep 1
       rm -rf ${PanelDir}/node_modules
     fi
+  fi
+  sleep 1
+  node server.js
+  if [ $? -ne 0 ]; then
+  echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+  else echo -e "开启成功！\n"
   fi
 }
 
