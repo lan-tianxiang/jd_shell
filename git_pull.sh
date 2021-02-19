@@ -51,7 +51,7 @@ function Git_PullShell {
 ## 更新crontab
 function Update_Cron {
   if [ -f ${ListCron} ]; then
-    #perl -i -pe "s|5 7,23 19-25 2 .* (.+jd_nzmh\W*.*)|5 7,23 19-25 2 * \1|" ${ListCron} # 紧急修复错误的cron
+    perl -i -pe "s|5 7,23 19-25 2 .* (.+jd_nzmh\W*.*)|5 7,23 19-25 2 * bash \1|" ${ListCron} # 紧急修复错误的cron
     perl -i -pe "s|30 8-20/4(.+jd_nian\W*.*)|28 8-20/4,21\1|" ${ListCron} # 修改默认错误的cron
     crontab ${ListCron}
   fi
