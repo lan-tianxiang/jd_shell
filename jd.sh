@@ -264,6 +264,7 @@ function panelinit {
       rm -rf ${PanelDir}/node_modules
     fi
   fi
+  echo -e "记得开启前先认真看Wiki中，功能页里关于控制面板的事项\n如果是第一次运行，请先重置一次密码!!!\n"
   sleep 1
   node server.js
   if [ $? -ne 0 ]; then
