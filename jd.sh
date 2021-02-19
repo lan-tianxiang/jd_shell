@@ -265,10 +265,9 @@ function panelinit {
     fi
   fi
   sleep 1
-  node server.js
+  node server.js & echo -e "开启成功！\n"
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
-  else echo -e "开启成功！\n"
   fi
 }
 
