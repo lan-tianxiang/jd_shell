@@ -9,6 +9,7 @@
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 [ ${JD_DIR} ] && HelpJd=jd || HelpJd=jd.sh
 ScriptsDir=${ShellDir}/scripts
+PanelDir=${ShellDir}/panel
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileConfSample=${ShellDir}/sample/config.sh.sample
@@ -165,11 +166,13 @@ function Random_Delay {
 ## 使用说明
 function Help {
   echo -e "本脚本的用法为："
-  echo -e "1. bash ${HelpJd} xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
-  echo -e "2. bash ${HelpJd} xxx now  # 无论是否设置了随机延迟，均立即运行"
-  echo -e "3. bash ${HelpJd} hangup   # 重启挂机程序"
-  echo -e "4. bash ${HelpJd} resetpwd # 重置控制面板用户名和密码"
+  echo -e "1. bash ${HelpJd} xxx       # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
+  echo -e "2. bash ${HelpJd} xxx now   # 无论是否设置了随机延迟，均立即运行"
+  echo -e "3. bash ${HelpJd} hangup    # 重启挂机程序"
+  echo -e "4. bash ${HelpJd} panelinit # 初始化控制面板(首次开启)"
+  echo -e "5. bash ${HelpJd} resetpwd  # 重置控制面板用户名和密码"
   echo -e "\n针对用法1、用法2中的\"xxx\"，无需输入后缀\".js\"，另外，如果前缀是\"jd_\"的话前缀也可以省略。"
+  echo -e "比如：   bash jd.sh jd_bean_change"
   echo -e "当前有以下脚本可以运行（仅列出以jd_、jr_、jx_开头的脚本）："
   cd ${ScriptsDir}
   for ((i=0; i<${#ListScripts[*]}; i++)); do
@@ -214,6 +217,52 @@ function Run_HangUp {
     Run_Pm2 2>/dev/null
   else
     Run_Nohup >/dev/null 2>&1
+  fi
+}
+
+## npm install 子程序，判断是否为安卓，判断是否安装有yarn
+function Npm_InstallSub {
+  if [ -n "${isTermux}" ]
+  then
+    npm install --no-bin-links || npm install --no-bin-links --registry=https://registry.npm.taobao.org
+  elif ! type yarn >/dev/null 2>&1
+  then
+    npm install || npm install --registry=https://registry.npm.taobao.org
+  else
+    echo -e "检测到本机安装了 yarn，使用 yarn 替代 npm...\n"
+    yarn install || yarn install --registry=https://registry.npm.taobao.org
+  fi
+}
+
+## panel install
+function panelinit {
+  [ -f ${PanelDir}/package.json ] && PackageListOld=$(cat ${PanelDir}/package.json)
+  cd ${PanelDir}
+  if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
+    echo -e "检测到package.json有变化，运行 npm install...\n"
+    Npm_InstallSub
+    if [ $? -ne 0 ]; then
+      echo -e "\nnpm install 运行不成功，自动删除 ${ScriptsDir}/node_modules 后再次尝试一遍..."
+      rm -rf ${PanelDir}/node_modules
+    fi
+    echo
+  fi
+
+  if [ ! -d ${PanelDir}/node_modules ]; then
+    echo -e "运行 npm install...\n"
+    Npm_InstallSub
+    if [ $? -ne 0 ]; then
+      echo -e "\nnpm install 运行不成功，自动删除 ${ScriptsDir}/node_modules...\n"
+      echo -e "请进入 ${ScriptsDir} 目录后按照wiki教程手动运行 npm install...\n"
+      echo -e "当 npm install 失败时，如果检测到有新任务或失效任务，只会输出日志，不会自动增加或删除定时任务...\n"
+      echo -e "3...\n"
+      sleep 1
+      echo -e "2...\n"
+      sleep 1
+      echo -e "1...\n"
+      sleep 1
+      rm -rf ${PanelDir}/node_modules
+    fi
   fi
 }
 
@@ -272,6 +321,8 @@ case $# in
       Run_HangUp
     elif [[ $1 == resetpwd ]]; then
       Reset_Pwd
+    elif [[ $1 == panelinit ]]; then
+      panelinit
     else
       Run_Normal $1
     fi
