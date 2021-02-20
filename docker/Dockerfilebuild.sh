@@ -13,6 +13,20 @@ GetImageType="Local"
 HasImage=false
 NewImage=true
 
+
+log() {
+    echo -e "\e[32m$1 \e[0m"
+}
+
+inp() {
+    echo -e "\e[33m$1 \e[0m"
+}
+
+warn() {
+    echo -e "\e[31m$1 \e[0m"
+}
+
+
 # 检测镜像是否存在
 Check_Image() {
     if [ ! -z "$(docker images -q $DockerImage 2> /dev/null)" ]; then
