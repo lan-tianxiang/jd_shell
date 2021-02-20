@@ -42,7 +42,7 @@ else
 fi
 
 
-strAttttt=`grep "url" ${ShellDir}/.git/config`
+strAttttt=`grep "url" ${ScriptsDir}/.git/config`
 strBttttt="lan-tianxiang"
 if [[ $strAttttt =~ $strBttttt ]]
 then
