@@ -41,6 +41,19 @@ else
   ShellURL=https://github.com/lan-tianxiang/jd_shell
 fi
 
+
+strAttttt=`grep "url" ${ShellDir}/.git/config`
+strBttttt="lan-tianxiang"
+if [[ $strAttttt =~ $strBttttt ]]
+then
+ echo "修复完成"
+else
+ rm -rf ${ScriptsDir}
+fi
+
+
+
+
 ## 更新shell脚本
 function Git_PullShell {
   echo -e "更新shell脚本，原地址：${ShellURL}\n"
