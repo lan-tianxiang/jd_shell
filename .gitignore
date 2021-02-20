@@ -9,3 +9,4 @@ new_task
 drop_task
 send_count
 jd.sh.*
+export_sharecodes.sh.*
