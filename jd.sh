@@ -13,6 +13,7 @@ PanelDir=${ShellDir}/panel
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileConfSample=${ShellDir}/sample/config.sh.sample
+panelpwd=${ConfigDir}/auth.json
 LogDir=${ShellDir}/log
 ListScripts=($(cd ${ScriptsDir}; ls *.js | grep -E "j[drx]_"))
 ListCron=${ConfigDir}/crontab.list
