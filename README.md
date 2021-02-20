@@ -1,5 +1,7 @@
 ![Anurag’s github stats](https://github-readme-stats.vercel.app/api?username=lan-tianxiang&show_icons=true&theme=merko)
 
+## 紧急通知 LXK9301脚本库暂时被封了，不过不会影响脚本的正常运行！！！！
+
 ## 请仔细阅读 [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释，95%的问题都能找到答案
 
 
