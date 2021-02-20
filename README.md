@@ -15,13 +15,13 @@
 
 - ArmBian/Debian/Ubuntu/OpenMediaVault/CentOS/Fedora/RHEL等Linux系统
 
-- OpenWRT(性能不行的就自觉放弃吧)
+- OpenWRT(教程划归于Linux)
 
 - Android
 
 - MacOS
 
-- Docker
+- Docker(用Dockerfile生成)
 
 ## 说明
 
