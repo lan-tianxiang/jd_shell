@@ -1,8 +1,8 @@
-version: "2.0"
+version: "3.0"
 services:
   # 第1个容器
   jd1:
-    image: evinedeng/jd  # 如果要从gitee更新脚本，则为：evinedeng/jd:gitee
+    image: lan-tianxiang/jd_shell:gitee  # 如果要从gitee更新脚本，则为：lan-tianxiang/jd_shell:gitee
     container_name: jd1
     restart: always
     tty: true
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./jd1/config:/jd/config
       - ./jd1/log:/jd/log
-      #- ./jd1/scripts:/jd/scripts    # 如果想要看到lxk0301大佬的js脚本，以方便的添加额外脚本，可以解除本行注释，下同
+      - ./jd1/scripts:/jd/scripts    # 如果想要看到lxk0301大佬的js脚本，以方便的添加额外脚本，可以解除本行注释，下同
     ports:
       - 5678:5678
     environment: 
@@ -20,7 +20,7 @@ services:
 
   # 第2个容器
   jd2:
-    image: evinedeng/jd # 如果要从gitee更新脚本，则为：evinedeng/jd:gitee
+    image: lan-tianxiang/jd_shell:gitee # 如果要从gitee更新脚本，则为：lan-tianxiang/jd_shell:gitee
     container_name: jd2
     restart: always
     tty: true
@@ -37,7 +37,7 @@ services:
 
   # 第3个容器，以此类推
   jd3:
-    image: evinedeng/jd # 如果要从gitee更新脚本，则为：evinedeng/jd:gitee
+    image: lan-tianxiang/jd_shell:gitee # 如果要从gitee更新脚本，则为：lan-tianxiang/jd_shell:gitee
     container_name: jd3
     restart: always
     tty: true
