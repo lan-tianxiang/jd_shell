@@ -51,6 +51,7 @@ then
  #echo "修复完成"
  rm -rf ${ScriptsDir}
 else
+ echo "Start"
  #rm -rf ${ScriptsDir}
 fi
 
