@@ -32,11 +32,13 @@ WhichDep=$(grep "/jd-base" "${ShellDir}/.git/config")
 Scripts2URL=https://github.com/lan-tianxiang/jd_scripts
 
 if [[ ${WhichDep} == *github* ]]; then
-  ScriptsURL=https://github.com/lan-tianxiang/jd_scripts1
+  ScriptsURL=https://github.com/RikudouPatrickstar/jd_scripts
+  #ScriptsURL=https://github.com/lan-tianxiang/jd_scripts1
   #ScriptsURL=https://gitee.com/lxk0301/jd_scripts    #库油炸啦
   ShellURL=https://github.com/lan-tianxiang/jd_shell
 else
-  ScriptsURL=https://github.com/lan-tianxiang/jd_scripts1
+  ScriptsURL=https://github.com/RikudouPatrickstar/jd_scripts
+  #ScriptsURL=https://github.com/lan-tianxiang/jd_scripts1
   #ScriptsURL=https://gitee.com/lxk0301/jd_scripts    #库油炸啦
   ShellURL=https://github.com/lan-tianxiang/jd_shell
 fi
@@ -46,9 +48,10 @@ strAttttt=`grep "url" ${ScriptsDir}/.git/config`
 strBttttt="lan-tianxiang"
 if [[ $strAttttt =~ $strBttttt ]]
 then
- echo "修复完成"
-else
+ #echo "修复完成"
  rm -rf ${ScriptsDir}
+else
+ #rm -rf ${ScriptsDir}
 fi
 
 
