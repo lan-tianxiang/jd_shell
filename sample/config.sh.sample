@@ -352,126 +352,6 @@ ForOtherSgmh4=""
 ForOtherSgmh5=""
 ForOtherSgmh6=""
 
-
-################################## 定义2020年炸年兽活动互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月12日前有效
-MyNian1=""
-MyNian2=""
-MyNian3=""
-MyNian4=""
-MyNian5=""
-MyNian6=""
-MyNianA=""
-MyNianB=""
-
-ForOtherNian1=""
-ForOtherNian2=""
-ForOtherNian3=""
-ForOtherNian4=""
-ForOtherNian5=""
-ForOtherNian6=""
-
-
-################################## 定义2020年炸年兽组队PK互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月12日前有效
-MyNianPk1=""
-MyNianPk2=""
-MyNianPk3=""
-MyNianPk4=""
-MyNianPk5=""
-MyNianPk6=""
-MyNianPkA=""
-MyNianPkB=""
-
-ForOtherNianPk1=""
-ForOtherNianPk2=""
-ForOtherNianPk3=""
-ForOtherNianPk4=""
-ForOtherNianPk5=""
-ForOtherNianPk6=""
-
-
-################################## 定义神仙书院活动互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月5日前有效
-MyImmortal1=""
-MyImmortal2=""
-MyImmortal3=""
-MyImmortal4=""
-MyImmortal5=""
-MyImmortal6=""
-MyImmortalA=""
-MyImmortalB=""
-
-ForOtherImmortal1=""
-ForOtherImmortal2=""
-ForOtherImmortal3=""
-ForOtherImmortal4=""
-ForOtherImmortal5=""
-ForOtherImmortal6=""
-
-
-################################## 定义京东手机年终奖活动互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月8日(含)前有效
-MyJdMobileFestival1=""
-MyJdMobileFestival2=""
-MyJdMobileFestival3=""
-MyJdMobileFestival4=""
-MyJdMobileFestival5=""
-MyJdMobileFestival6=""
-MyJdMobileFestivalA=""
-MyJdMobileFestivalB=""
-
-ForOtherJdMobileFestival1=""
-ForOtherJdMobileFestival2=""
-ForOtherJdMobileFestival3=""
-ForOtherJdMobileFestival4=""
-ForOtherJdMobileFestival5=""
-ForOtherJdMobileFestival6=""
-
-
-################################## 定义京东5G狂欢城活动互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月4日(含)前有效
-My5g1=""
-My5g2=""
-My5g3=""
-My5g4=""
-My5g5=""
-My5g6=""
-My5gA=""
-My5gB=""
-
-ForOther5g1=""
-ForOther5g2=""
-ForOther5g3=""
-ForOther5g4=""
-ForOther5g5=""
-ForOther5g6=""
-
-
-################################## 定义京东京东压岁钱活动互助（选填） ##################################
-## 具体填法及要求详见：https://github.com/EvineDeng/jd-base/wiki/FAQ
-## 仅2021年2月11日(含)前有效
-MynewYear1=""
-MynewYear2=""
-MynewYear3=""
-MynewYear4=""
-MynewYear5=""
-MynewYear6=""
-MynewYearA=""
-MynewYearB=""
-
-ForOthernewYear1=""
-ForOthernewYear2=""
-ForOthernewYear3=""
-ForOthernewYear4=""
-ForOthernewYear5=""
-ForOthernewYear6=""
-
 ################################## 定义京东环球挑战赛活动互助（选填） ##################################
 ## 具体填法及要求详见：https://github.com/lan-tianxiang/jd_shell/wiki/
 ## 环球挑战赛
@@ -570,6 +450,11 @@ export JOY_HELP_FEED=""
 ################################## 定义宠汪汪是否自动报名宠物赛跑（选填） ##################################
 ## 默认 "true" 参加宠物赛跑，如需关闭，请改成 "false"
 export JOY_RUN_FLAG=""
+
+
+################################## 定义宠汪汪赛跑是否自动助力自己（选填） ##################################
+## 默认 "true" 助力自己，如需关闭，请改成 "false"
+export JOY_RUN_HELP_MYSELF="true"
 
 
 ################################## 定义宠汪汪参加比赛类型（选填） ##################################
