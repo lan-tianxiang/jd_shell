@@ -5,6 +5,7 @@ scripts*
 log*
 config*
 version
+old_crontab
 new_task
 drop_task
 send_count
