@@ -1,31 +1,19 @@
 #!/bin/bash
 set -e
 
-if [ ! -d ${JD_DIR}/config ]; then
-  echo -e "没有映射config配置目录给本容器，请先按教程映射config配置目录...\n"
-  exit 1
-fi
+echo -e "======================1. 检测配置文件========================\n"
+[ ! -d ${JD_DIR}/config ] && mkdir -p ${JD_DIR}/config
 
-echo -e "\n========================1. 更新源代码========================\n"
-[ ! -d ${JD_DIR}/log ] && mkdir -p ${JD_DIR}/log
-crond
-bash git_pull
-echo
-
-echo -e "========================2. 检测配置文件========================\n"
-
-if [ -s ${JD_DIR}/config/crontab.list ]
+if [ ! -s ${JD_DIR}/config/crontab.list ]
 then
-  echo -e "检测到config配置目录下存在crontab.list，自动导入定时任务...\n"
-  crontab ${JD_DIR}/config/crontab.list
-  echo -e "成功添加定时任务...\n"
-else
   echo -e "检测到config配置目录下不存在crontab.list或存在但文件为空，从示例文件复制一份用于初始化...\n"
-  cp -fv ${JD_DIR}/sample/docker.list.sample ${JD_DIR}/config/crontab.list
-  echo
-  crontab ${JD_DIR}/config/crontab.list
-  echo -e "成功添加定时任务...\n"
+  cp -fv ${JD_DIR}/sample/crontab.list.sample ${JD_DIR}/config/crontab.list
+  sed -i "s,MY_PATH,${JD_DIR},g" ${JD_DIR}/config/crontab.list
+  sed -i "s,ENV_PATH=,PATH=$PATH,g" ${JD_DIR}/config/crontab.list
 fi
+crond
+crontab ${JD_DIR}/config/crontab.list
+echo -e "成功添加定时任务...\n"
 
 if [ ! -s ${JD_DIR}/config/config.sh ]; then
   echo -e "检测到config配置目录下不存在config.sh，从示例文件复制一份用于初始化...\n"
@@ -38,6 +26,11 @@ if [ ! -s ${JD_DIR}/config/auth.json ]; then
   cp -fv ${JD_DIR}/sample/auth.json ${JD_DIR}/config/auth.json
   echo
 fi
+
+echo -e "======================2. 更新源代码========================\n"
+bash ${JD_DIR}/git_pull.sh
+echo
+
 
 echo -e "========================3. 启动挂机程序========================\n"
 if [[ ${ENABLE_HANGUP} == true ]]; then
