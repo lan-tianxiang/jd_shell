@@ -217,6 +217,8 @@ if [ $DelContainer = true ]; then
     docker rm $ContainerName > /dev/null
 fi
 
+clear
+
 log "\n创建容器并运行"
 docker run -dit \
     $NeedDirConfig \
