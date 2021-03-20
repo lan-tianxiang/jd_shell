@@ -4,7 +4,7 @@
 #
 clear
 
-DockerImage="lan-tianxiang/jd_shell:v3"
+DockerImage="lantianxiang1/jd_shell:v3"
 ShellName=$0
 ShellDir=$(cd "$(dirname "$0")";pwd)
 ContainerName=""
@@ -15,7 +15,7 @@ ConfigDir=""
 LogDir=""
 ScriptsDir=""
 
-GetImageType="Local"
+GetImageType="Online"
 HasImage=false
 NewImage=true
 DelContainer=false
@@ -56,11 +56,11 @@ warn "\n注意如果你什么都不清楚，建议所有选项都直接回车，
 
 # 选择镜像获取方式
 Choose_GetImageType() {
-    inp "\n选择镜像获取方式：\n1) 本地生成[默认]\n2 在线获取[暂不可用]) "
+    inp "\n选择镜像获取方式：\n1) 在线获取[默认]\n2 本地生成) "
     echo -n -e "\e[33m输入您的选择->\e[0m"
     read update
     if [ "$update" = "2" ]; then
-        GetImageType="Online"
+        GetImageType="Local"
     fi
 }
 
