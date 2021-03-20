@@ -21,7 +21,7 @@
 
 运行此脚本前必须手动安装好依赖：`git wget curl perl node.js npm`等，具体请请查看wiki  
 ```shell
-wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_jd.sh -O install_jd.sh && chmod +x install_jd.sh && ./install_jd.sh
+wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && ./linux_install_jd.sh
 ```
 
 
