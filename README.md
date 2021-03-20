@@ -30,6 +30,7 @@ wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_scripts/linux
 wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && ./docker_install_jd.sh
 ```
 
+### 此一键脚本参考RikudouPatrickstar的OneKey_install
 
 ## 说明
 
