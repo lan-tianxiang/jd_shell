@@ -2,7 +2,7 @@ FROM node:lts-alpine
 LABEL maintainer="Evine Deng <evinedeng@foxmail.com>"
 ARG JD_BASE_URL=https://github.com/lan-tianxiang/jd_shell
 ARG JD_BASE_BRANCH=v3
-ARG JD_SCRIPTS_URL=https://gitee.com/lxk0301/jd_scripts
+ARG JD_SCRIPTS_URL=https://github.com/RikudouPatrickstar/jd_scripts
 ARG JD_SCRIPTS_BRANCH=master
 ARG JD_SCRIPTS2_URL=https://github.com/lan-tianxiang/jd_scripts
 ARG JD_SCRIPTS2_BRANCH=master
@@ -45,4 +45,4 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && chmod 777 /usr/local/bin/docker-entrypoint.sh \
     && rm -rf /root/.npm
 WORKDIR ${JD_DIR}
-ENTRYPOINT docker-entrypoint.sh
+ENTRYPOINT bash ${JD_DIR}/docker/docker-entrypoint.sh
