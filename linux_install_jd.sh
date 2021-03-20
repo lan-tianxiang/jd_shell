@@ -1,5 +1,6 @@
 #!/bin/sh
 clear
+echo -e "\n"
 echo -e "\e[开始部署jd_shell\n\e[0m"
 
 ShellDir=$(cd "$(dirname "$0")";pwd)
