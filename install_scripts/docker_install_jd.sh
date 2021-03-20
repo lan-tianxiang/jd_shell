@@ -56,10 +56,10 @@ warn "\n注意如果你什么都不清楚，建议所有选项都直接回车，
 
 # 选择镜像获取方式
 Choose_GetImageType() {
-    inp "\n选择镜像获取方式：\n1) 在线获取\n2) 本地生成[默认]"
+    inp "\n选择镜像获取方式：\n1) 本地生成[默认]\n2 在线获取[暂不可用]) "
     echo -n -e "\e[33m输入您的选择->\e[0m"
     read update
-    if [ "$update" = "1" ]; then
+    if [ "$update" = "2" ]; then
         GetImageType="Online"
     fi
 }
@@ -133,7 +133,7 @@ Need_ConfigDir() {
         NeedDirConfig=''
     else
         NeedDirConfig="-v $ConfigDir:/jd/config"
-        echo -e "\n\e[33m如果有用于存放配置文件的远程 Git 仓库，请输入地址，否则直接回车:\e[0m"
+        echo -e "\n\e[33m如果有用于存放配置文件的远程 Git 仓库，请输入地址，否则直接回车（看不懂也回车）:\e[0m"
         read remote_config
         if [ -n "$remote_config" ]; then
             git clone $remote_config ${JdDir}/config
