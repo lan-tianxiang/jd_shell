@@ -21,13 +21,13 @@
 
 运行此脚本前必须手动安装好依赖：`git wget curl perl node.js npm`等，具体请请查看wiki  
 ```shell
-wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && ./linux_install_jd.sh
+wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_scripts/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && ./linux_install_jd.sh
 ```
 
 ### 2. Docker 一键部署单个容器：
 
 ```shell
-wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && ./docker_install_jd.sh
+wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && ./docker_install_jd.sh
 ```
 
 
