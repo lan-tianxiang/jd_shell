@@ -203,7 +203,7 @@ if [ $NewImage = true ]; then
         mkdir -p $WorkDir
         wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/docker/Dockerfile -O $WorkDir/Dockerfile
         sed -i 's,github.com,github.com.cnpmjs.org,g' $WorkDir/Dockerfile
-        sed -i 's,npm install,npm install --registry=https://mirrors.huaweicloud.com/repository/npm/,g' $WorkDir/Dockerfile
+        sed -i 's,npm install,npm install --registry=https://registry.npm.taobao.org,g' $WorkDir/Dockerfile
         docker build -t $DockerImage $WorkDir > $ShellDir/build_jd_image.log
         rm -fr $WorkDir
     else
