@@ -2,8 +2,6 @@
 
 ## 请仔细阅读 [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释，95%的问题都能找到答案
 
-## 如有二次使用，请注明来源
-
 ## 适用于以下系统
 
 - ArmBian/Debian/Ubuntu/OpenMediaVault/CentOS/Fedora/RHEL等Linux系统
@@ -15,6 +13,19 @@
 - MacOS
 
 - Docker(用Dockerfile生成)
+
+
+### 如何部署？
+
+### 1.Linux 脚本一键部署：
+
+运行此脚本前必须手动安装好依赖：`git wget curl perl node.js npm`等，具体请请查看wiki  
+```shell
+wget -q https://cdn.jsdelivr.net/gh/lan-tianxiang/jd_shell/install_jd.sh -O install_jd.sh && chmod +x install_jd.sh && ./install_jd.sh
+```
+
+
+
 
 ## 说明
 
@@ -31,13 +42,3 @@
 2020-01-21，增加shylocks/Loon脚本。
 
 2021-01-15，如果本机上安装了pm2，则挂机程序以pm2启动，否则以nohup启动。
-
-
-## 1. Linux
-
-### 脚本一键部署：
-
-运行此脚本前必须手动安装好依赖：`git wget curl perl node.js npm`等，请查看wiki  
-```shell
-wget -q https://cdn.jsdelivr.net/gh/RikudouPatrickstar/jd-base/onekey-install.sh -O onekey-jd-base.sh && chmod +x onekey-jd-base.sh && ./onekey-jd-base.sh
-```
