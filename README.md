@@ -55,7 +55,7 @@
 
 ### 如何部署？
 
-`Linux`
+## `Linux`
 
 - [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
 
@@ -65,7 +65,7 @@
 
 - [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻
 
-`Docker`
+## `Docker`
 
 - [Docker](https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻
 
