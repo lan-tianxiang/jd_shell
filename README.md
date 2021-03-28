@@ -55,6 +55,8 @@
 
 ### 如何部署？
 
+`Linux`
+
 - [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
 
 - [CentOS/RedHat/Fedora等红帽系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
@@ -63,35 +65,14 @@
 
 - [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻
 
+`Docker`
+
 - [Docker](https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻
 
 
-
-
-### 1.`Linux` 版本 一键部署：
-<img width="600px" src="https://user-images.githubusercontent.com/42911023/112751658-aacf2000-9001-11eb-8d46-55170e90b6e1.png" alt="GitHub Readme Stats" />
-
-```shell
-wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && bash linux_install_jd.sh
-```
-若提示没有安装wget,则请先安装wget
-
-OpenWRT、MacOs等类UNIX系统请自先安装环境，然后选择一键脚本 选项4
-
-
-### 2.`Docker` 版本 一键部署单个容器
-[![dockeri.co](https://dockeri.co/image/lantianxiang1/jd_shell)](https://registry.hub.docker.com/r/lantianxiang1/jd_shell/tags?page=1&ordering=last_updated)
-|                       支持的架构                        |
-| :----------------------------------------------------: |
-| `amd64` `arm64/v8` `arm/v7` `arm/v6` `ppc64le` `s390x` |
-```shell
-wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
-```
-
-### 3. 修复或跨版本更新：
+### 修复或跨版本更新：
 - 进入项目安装目录
 
-      cd /home/jd
 - 执行修复与升级脚本
 
       bash repair.sh
