@@ -49,48 +49,52 @@
     <br />
 </p>
 
-### 写这个项目是打算自用的，所以请大家不要传播。既然有幸看到了用就行，不许以任何形式通过贩卖京Bean,软件来非法获益。一旦发现后果自负！！
+### ☣写这个项目是打算自用的，所以请大家不要传播。既然有幸看到了用就行，不许以任何形式通过贩卖京Bean,软件来非法获益。一旦发现后果自负！！☣
 
 ## 适用于以下系统
 
-- ArmBian/Debian/Ubuntu/OpenMediaVault/CentOS/Fedora/RHEL等Linux系统
+- debian/ubuntu/armbian/OpenMediaVault等debian系  🔻   一键脚本 选项1
 
-- OpenWRT(教程划归于Linux)
+- CentOS/RedHat/Fedora等红帽系  🔻   一键脚本 选项2
 
-- Android
+- Android等使用Termux模拟Linux的系统  🔻   一键脚本 选项3
 
-- MacOS
+- OpenWRT、MacOs等类UNIX系统  🔻   一键脚本 4选项
 
-- Docker
+- Docker  🔻   一键脚本
 
 
 ### 如何部署？
 
-### 1.Linux 一键部署：
+### 1.`Linux` 版本 一键部署：
 内有多个环节选择，可退出！
 ```shell
 wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && bash linux_install_jd.sh
 ```
 若提示没有安装wget,则安装wget
 
-### 2. Docker 一键部署单个容器：[![Docker Pulls](https://img.shields.io/docker/pulls/lantianxiang1/jd_shell?style=for-the-badge)](https://registry.hub.docker.com/r/lantianxiang1/jd_shell/tags?page=1&ordering=last_updated)
 
+### 2.`Docker` 版本 一键部署单个容器
+[![dockeri.co](https://dockeri.co/image/lantianxiang1/jd_shell)](https://registry.hub.docker.com/r/lantianxiang1/jd_shell/tags?page=1&ordering=last_updated)
+|                       支持的架构                        |
+| :----------------------------------------------------: |
+| `amd64` `arm64/v8` `arm/v7` `arm/v6` `ppc64le` `s390x` |
 ```shell
 wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/docker_install_jd.sh -O docker_install_jd.sh && chmod +x docker_install_jd.sh && bash docker_install_jd.sh
 ```
 
-### 3. 修复或升级：
+### 3. 修复或跨版本更新：
 - 进入项目安装目录
 
       cd /home/jd
 - 执行修复与升级脚本
 
       bash repair.sh
-> 注意：1. 此脚本适用于任何脚本出现异常，无法更新，出现未知错误时运行。不会清除账号以及配置数据，请放心使用！！
+> 注意：1. 此脚本适用于任何脚本出现异常，无法更新，出现未知错误时运行。不会清除账号以及配置数据，请放心食用！！
 
 ***
 
-### [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释都含有大量教程，请自行翻阅
+### [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释都含有大量教程，请自行翻阅❗❗
 
 ## 说明
 
