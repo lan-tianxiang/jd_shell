@@ -286,7 +286,7 @@ function Reset_Pwd {
 function Run_Normal {
   Import_Conf && Detect_Cron && Set_Env
 
-  if [ AutoHelpme = true ]; then
+  if [ ${AutoHelpme} = true ]; then
     if [ -f ${LogDir}/export_sharecodes/export_sharecodes.log ]; then
       cp -f ${FileConf} ${ConfigDir}/config.sh.temp
       echo ${LogDir}/export_sharecodes/export_sharecodes.log >> config.sh.temp
