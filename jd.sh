@@ -285,7 +285,7 @@ function Reset_Pwd {
 ## 运行京东脚本
 function Run_Normal {
  
-  if[AutoHelpme]; then
+  if[ AutoHelpme = true ]; then
     FileConf=${ConfigDir}/config.sh.temp
     Import_Conf && Detect_Cron && Set_Env
   else
