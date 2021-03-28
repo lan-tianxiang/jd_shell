@@ -73,6 +73,7 @@
 wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && bash linux_install_jd.sh
 ```
 若提示没有安装wget,则请先安装wget
+
 OpenWRT、MacOs等类UNIX系统请自先安装环境，然后选择一键脚本 选项4
 
 
