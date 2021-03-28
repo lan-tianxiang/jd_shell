@@ -69,6 +69,9 @@
 
 - [Docker](https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻
 
+## `Windows10` 安装 WSL Ubuntu
+
+- [Win10](https://github.com/lan-tianxiang/jd_shell/wiki/Win10)  🔻
 
 ### 修复或跨版本更新：
 - 进入项目安装目录
