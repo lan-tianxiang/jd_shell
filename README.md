@@ -53,18 +53,20 @@
 
 ## 适用于以下系统
 
-- [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻   一键脚本 选项1
-
-- [CentOS/RedHat/Fedora等红帽系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻   一键脚本 选项2
-
-- [Android等使用Termux模拟Linux的系统](https://github.com/lan-tianxiang/jd_shell/wiki/Android)  🔻   一键脚本 选项3
-
-- [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻   一键脚本 选项4
-
-- [Docker]((https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻   一键脚本
-
-
 ### 如何部署？
+
+- [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
+
+- [CentOS/RedHat/Fedora等红帽系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
+
+- [Android等使用Termux模拟Linux的系统](https://github.com/lan-tianxiang/jd_shell/wiki/Android)  🔻
+
+- [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻
+
+- [Docker](https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻
+
+
+
 
 ### 1.`Linux` 版本 一键部署：
 <img width="600px" src="https://user-images.githubusercontent.com/42911023/112751658-aacf2000-9001-11eb-8d46-55170e90b6e1.png" alt="GitHub Readme Stats" />
