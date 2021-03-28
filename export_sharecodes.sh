@@ -137,7 +137,8 @@ function Cat_All() {
 }
 
 ## 执行并写入日志
-LogTime=$(date "+%Y-%m-%d-%H-%M-%S")
-LogFile="${LogDir}/export_sharecodes/${LogTime}.log"
+#LogTime=$(date "+%Y-%m-%d-%H-%M-%S")
+#LogFile="${LogDir}/export_sharecodes/${LogTime}.log"
+LogFile="${LogDir}/export_sharecodes/export_sharecodes.log"
 [ ! -d "${LogDir}/export_sharecodes" ] && mkdir -p ${LogDir}/export_sharecodes
 Import_Conf && Count_UserSum && Cat_All | perl -pe "{s|京东种豆|种豆|; s|crazyJoy任务|疯狂的JOY|}" | tee ${LogFile}
