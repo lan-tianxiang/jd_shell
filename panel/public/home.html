@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在线编辑工具</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/codemirror.min.js"></script>
+    <script type="text/javascript" src="./js/shell.js"></script>
+    <script type="text/javascript" src="./js/sweetalert2.js"></script>
+    <script type="text/javascript" src="./js/qrcode.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/codemirror.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/twilight.css">
+    <link rel="stylesheet" type="text/css" href="./css/dracula.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="diffs">
+            <nav>
+                <ul>
+                    <li class="active"><a href="./home">首页</a></li>
+                    <li><a href="./crontab">定时设定</a></li>
+                    <li><a href="./diff">对比工具</a></li>
+                    <li><a href="./shareCode">Share Code</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
+                    <li><a href="./log">日志查询</a></li>
+                    <li><a href="./changepwd">修改密码</a></li>
+                    <li><a href="./logout">退出</a></li>
+                </ul>
+            </nav>
+            <header>
+                <h1>在线编辑工具</h1>
+                <button id="save" title="保存">保存 config.sh</button>
+                <button id="cookietools" title="手机扫描二维码登录">扫码获取Cookie</button>
+            </header>
+            <h4>config.sh</h4>
+            <div class="wrapper">
+                <textarea id="code" name="code"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="qrcontainer" class="hidden">
+        <div class="qframe">
+            <div id="refresh_qrcode" class="hidden">
+                <div>
+                    <h3>二维码已失效</h3>
+                    <div class="refresh">刷新</div>
+                </div>
+            </div>
+            <div id="qrcode"></div>
+            <div class="info">请使用京东手机APP扫码</div>
+        </div>
+    </div>
+    <script>
+        var qrcode, userCookie;
+        $(document).ready(function () {
+            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                lineNumbers: true,
+                lineWrapping: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+                mode: 'shell',
+                theme: 'dracula'
+            });
+            let timeStamp = (new Date()).getTime()
+            $.get("./api/config/config?t="+timeStamp, function (data) {
+                editor.setValue(data);
+            });
+
+            qrcode = new QRCode(document.getElementById("qrcode"),
+                {
+                    text: "sample",
+                    correctLevel: QRCode.CorrectLevel.L
+                });
+
+
+            function copyToClip(content, message) {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", content);
+                document.body.appendChild(aux);
+                aux.select();
+                document.execCommand("copy");
+                document.body.removeChild(aux);
+            }
+
+
+            function checkLogin() {
+                var timeId = setInterval(() => {
+                    let timeStamp = (new Date()).getTime()
+                    $.get('./cookie?t='+timeStamp, function (data) {
+                        if (data.err == 0) {
+                            clearInterval(timeId)
+                            $("#qrcontainer").addClass("hidden")
+                            $("#refresh_qrcode").addClass("hidden")
+                            userCookie = data.cookie
+                            Swal.fire({
+                                title: "cookie已获取",
+                                html:
+                                    '<div class="cookieCon" style="font-size:12px;">' + userCookie + '</div>',
+                                text: userCookie,
+                                icon: "success",
+                                confirmButtonText: "复制",
+                            }).then((result) => {
+                                copyToClip(userCookie);
+                            })
+                        } else if (data.err == 21) {
+                            clearInterval(timeId)
+                            $("#refresh_qrcode").removeClass("hidden")
+                        }
+                    })
+                }, 3000)
+
+            }
+
+            function get_code() {
+                let timeStamp = (new Date()).getTime()
+                $.get('./qrcode?t='+timeStamp, function (data) {
+                    if (data.err == 0) {
+                        $("#qrcontainer").removeClass("hidden")
+                        $("#refresh_qrcode").addClass("hidden")
+                        qrcode.clear();
+                        qrcode.makeCode(data.qrcode);
+                        checkLogin();
+                    } else {
+                        Swal.fire({
+                            text: data.msg,
+                            icon: "error"
+                        })
+                    }
+                });
+            }
+
+            $('.refresh').click(get_code)
+
+            $('#cookietools').click(get_code)
+
+            $('#save').click(function () {
+                var confContent = editor.getValue();
+                let timeStamp = (new Date()).getTime()
+                $.post('./api/save?t='+timeStamp, { content: confContent, name: "config.sh" }, function (data) {
+                    let icon = (data.err == 0) ? "success" : "error"
+                    Swal.fire({
+                        title:data.title,
+                        text: data.msg,
+                        icon: icon
+                    }).then((result) => {
+                        window.location.reload(true);
+                    })
+                });
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

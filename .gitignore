@@ -1,0 +1,13 @@
+panel/node_modules*
+panel/yarn.lock
+panel/package-lock.json
+scripts*
+log*
+config*
+version
+old_crontab
+new_task
+drop_task
+send_count
+jd.sh.*
+export_sharecodes.sh.*

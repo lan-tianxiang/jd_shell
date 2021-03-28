@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>修改用户名密码</title>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/sweetalert2.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="diffs">
+			<nav>
+				<ul>
+					<li><a href="./home">首页</a></li>
+					<li><a href="./crontab">定时设定</a></li>
+					<li><a href="./diff">对比工具</a></li>
+					<li><a href="./shareCode">Share Code</a></li>
+					<li><a href="./diy">自定义脚本</a></li>
+					<li><a href="./log">日志查询</a></li>
+					<li class="active"><a href="./changepwd">修改密码</a></li>
+					<li><a href="./logout">退出</a></li>
+				</ul>
+			</nav>
+			<div class="login-form">
+				<h1>请输入新的用户名密码</h1>
+				<form action="changepass" method="POST">
+					<input type="text" name="username" class="username" placeholder="Username" required>
+					<input type="password" name="password" class="password" placeholder="Password" required>
+					<input type="submit" id="changeBtn" value="提交修改">
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		$("#changeBtn").click(function () {
+			$user = $(".username").val();
+			$password = $(".password").val();
+			let timeStamp = (new Date()).getTime()
+			$.post('./changepass?t='+timeStamp, { username: $user, password: $password }, function (data) {
+				let icon = (data.err == 0) ? "success" : "error"
+				Swal.fire({
+					text: data.msg,
+					icon:icon
+				})
+			});
+			return false;
+		});
+	</script>
+
+</body>
+
+
+</html>
