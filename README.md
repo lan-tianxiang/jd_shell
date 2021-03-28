@@ -59,7 +59,7 @@
 
 - Android等使用Termux模拟Linux的系统  🔻   一键脚本 选项3
 
-- OpenWRT、MacOs等类UNIX系统  🔻   一键脚本 4选项
+- OpenWRT、MacOs等类UNIX系统  🔻   一键脚本 选项4
 
 - Docker  🔻   一键脚本
 
@@ -67,11 +67,13 @@
 ### 如何部署？
 
 ### 1.`Linux` 版本 一键部署：
-内有多个环节选择，可退出！
+<img width="600px" src="https://user-images.githubusercontent.com/42911023/112751658-aacf2000-9001-11eb-8d46-55170e90b6e1.png" alt="GitHub Readme Stats" />
+
 ```shell
 wget -q https://gitee.com/highdimen/jd_shell/raw/v3/install_scripts/linux_install_jd.sh -O linux_install_jd.sh && chmod +x linux_install_jd.sh && bash linux_install_jd.sh
 ```
-若提示没有安装wget,则安装wget
+若提示没有安装wget,则请先安装wget
+OpenWRT、MacOs等类UNIX系统请自先安装环境，然后选择一键脚本 选项4
 
 
 ### 2.`Docker` 版本 一键部署单个容器
