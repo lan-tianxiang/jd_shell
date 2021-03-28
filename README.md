@@ -53,15 +53,15 @@
 
 ## 适用于以下系统
 
-- debian/ubuntu/armbian/OpenMediaVault等debian系  🔻   一键脚本 选项1
+- [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻   一键脚本 选项1
 
-- CentOS/RedHat/Fedora等红帽系  🔻   一键脚本 选项2
+- [CentOS/RedHat/Fedora等红帽系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻   一键脚本 选项2
 
-- Android等使用Termux模拟Linux的系统  🔻   一键脚本 选项3
+- [Android等使用Termux模拟Linux的系统](https://github.com/lan-tianxiang/jd_shell/wiki/Android)  🔻   一键脚本 选项3
 
-- OpenWRT、MacOs等类UNIX系统  🔻   一键脚本 选项4
+- [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻   一键脚本 选项4
 
-- Docker  🔻   一键脚本
+- [Docker]((https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻   一键脚本
 
 
 ### 如何部署？
