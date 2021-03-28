@@ -1,11 +1,11 @@
-name: DockerHub
+name: Built_JD_Shell_To_Docker
 on:
   workflow_dispatch:
   push:
     branches: 
       - v3
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '* */2 * * *'
 
 jobs:
   docker:
@@ -23,8 +23,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
-          username: ${{ secrets.MY_ID }}
-          password: ${{ secrets.MY_PASSWORD }}
+          username: ${{ secrets.DockerHub_ID }}
+          password: ${{ secrets.DockerHub_PASSWORD }}
 
       - name: Build & Push
         uses: docker/build-push-action@v2
