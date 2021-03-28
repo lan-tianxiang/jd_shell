@@ -1,9 +1,6 @@
 name: Built_JD_Shell_To_Docker
 on:
   workflow_dispatch:
-  push:
-    branches: 
-      - v3
   schedule:
     - cron: '* */2 * * *'
 
