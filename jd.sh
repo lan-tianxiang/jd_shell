@@ -287,8 +287,14 @@ function Run_Normal {
   Import_Conf && Detect_Cron && Set_Env
 
   if [ AutoHelpme = true ]; then
-    FileConf=${ConfigDir}/config.sh.temp
-    Import_Conf && Detect_Cron && Set_Env
+    if [ -f ${LogDir}/export_sharecodes/export_sharecodes.log ]; then
+      cp -f FileConf ${ConfigDir}/config.sh.temp
+      echo LogDir/export_sharecodes/export_sharecodes.log >> config.sh.temp
+      FileConf=${ConfigDir}/config.sh.temp
+      Import_Conf && Detect_Cron && Set_Env
+    else
+      echo "暂时没有助力码"
+    fi
   else
     echo "0000"
   fi
