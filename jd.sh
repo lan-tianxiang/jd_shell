@@ -18,6 +18,9 @@ LogDir=${ShellDir}/log
 ListScripts=($(cd ${ScriptsDir}; ls *.js | grep -E "j[drx]_"))
 ListCron=${ConfigDir}/crontab.list
 
+## 常量
+AutoHelpme=false
+
 ## 导入config.sh
 function Import_Conf {
   if [ -f ${FileConf} ]
