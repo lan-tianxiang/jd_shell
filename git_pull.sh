@@ -15,6 +15,7 @@ Scripts2Dir=${ShellDir}/scripts2
 PanelDir=${ShellDir}/panel
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
+FileConftemp=${ConfigDir}/config.sh.temp
 FileDiy=${ConfigDir}/diy.sh
 FileConfSample=${ShellDir}/sample/config.sh.sample
 ListCron=${ConfigDir}/crontab.list
@@ -542,5 +543,8 @@ else
   echo -e "\033[31m活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\033[0m"
   Change_ALL
 fi
+
+## 清除配置缓存
+[ -f ${FileConftemp} ] && rm -rf FileConftemp
 
 echo -e "脚本目录：${ShellDir}"
