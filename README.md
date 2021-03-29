@@ -9,7 +9,7 @@
 </p>
   <p align="center">
     <a href="https://github.com/lan-tianxiang/jd_shell/actions">
-      <img alt="Tests Passing" src="https://github.com/lan-tianxiang/jd_shell/workflows/DockerHub/badge.svg" />
+      <img alt="Tests Passing" src="https://github.com/lan-tianxiang/jd_shell/workflows/Sync_JD_Shell_To_Gitee/badge.svg" />
     </a>
     <a href="https://codecov.io/gh/lan-tianxiang/jd_shell">
       <img src="https://codecov.io/gh/lan-tianxiang/jd_shell/branch/master/graph/badge.svg" />
@@ -107,6 +107,10 @@ TG群：t.me/jd_shell
 <summary> </summary>
  
 > 只记录大的更新，小修小改不记录。
+
+2021-03-29, 增加超时关闭，以防因网络等未知原因卡住而不断消耗系统资源（默认关闭）
+
+2021-03-28, 自动配置并填写助力码，在config最后的专区内，无需人工干预（默认关闭）
 
 2021-02-19，面板功能集成至jd.sh内，运行jd.sh会出现操作提示
 
