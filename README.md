@@ -57,7 +57,7 @@
 
 ## `Linux`
 
-- [debian/ubuntu/armbian/OpenMediaVault等debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
+- [Debian/Ubuntu/Armbian/OpenMediaVault等Debian系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
 
 - [CentOS/RedHat/Fedora等红帽系](https://github.com/lan-tianxiang/jd_shell/wiki/Linux)  🔻
 
