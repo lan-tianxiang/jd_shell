@@ -9,7 +9,7 @@
 </p>
   <p align="center">
     <a href="https://github.com/lan-tianxiang/jd_shell/actions">
-      <img alt="Tests Passing" src="https://github.com/lan-tianxiang/jd_shell/workflows/Sync_JD_Shell_To_Gitee/badge.svg" />
+      <img alt="Docker Built" src="https://github.com/lan-tianxiang/jd_shell/workflows/Built_JD_Shell_To_Docker/badge.svg" />
     </a>
     <a href="https://codecov.io/gh/lan-tianxiang/jd_shell">
       <img src="https://codecov.io/gh/lan-tianxiang/jd_shell/branch/master/graph/badge.svg" />
