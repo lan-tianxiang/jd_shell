@@ -50,7 +50,7 @@ echo -e "\n2. 检查配置文件"
 
 if [ ! -s ${JdDir_t}/config/crontab.list ]
 then
-  cp -fv ${JdDir_t}/sample/crontab.list.sample ${JdDir}/config/crontab.list
+  cp -fv ${JdDir_t}/sample/crontab.list.sample ${JdDir_t}/config/crontab.list
   sed -i "s,MY_PATH,${JdDir_t},g" ${JdDir_t}/config/crontab.list
   sed -i "s,ENV_PATH=,PATH=$PATH,g" ${JdDir_t}/config/crontab.list
 fi
