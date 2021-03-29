@@ -42,23 +42,26 @@ fi
 
 
 function SourceUrl_Update {
-
-  strAttttt=`grep "url" ${ScriptsDir}/.git/config`
-  strBttttt="highdimen"
-if [[ $strAttttt =~ $strBttttt ]]
-  then
-  echo "1"
-  else
-  rm -rf ${ScriptsDir}
+if [ -f ${ScriptsDir}/.git/config ]; then
+    strAttttt=`grep "url" ${ScriptsDir}/.git/config`
+    strBttttt="highdimen"
+  if [[ $strAttttt =~ $strBttttt ]]
+    then
+    echo "1"
+    else
+    rm -rf ${ScriptsDir}
+  fi
 fi
 
-  strAttttt=`grep "url" ${Scripts2Dir}/.git/config`
-  strBttttt="highdimen"
-if [[ $strAttttt =~ $strBttttt ]]
-  then
-  echo "2"
-  else
-  rm -rf ${Scripts2Dir}
+if [ -f ${Scripts2Dir}/.git/config ]; then
+    strAttttt=`grep "url" ${Scripts2Dir}/.git/config`
+    strBttttt="highdimen"
+  if [[ $strAttttt =~ $strBttttt ]]
+    then
+    echo "1"
+    else
+    rm -rf ${ScriptsDir}
+  fi
 fi
 
   strAttttt=`grep "url" ${ShellDir}/.git/config`
