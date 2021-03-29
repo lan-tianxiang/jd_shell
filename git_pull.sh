@@ -545,6 +545,6 @@ else
 fi
 
 ## 清除配置缓存
-[ -f ${FileConftemp} ] && rm -rf FileConftemp
+[ -f ${FileConftemp} ] && rm -rf ${FileConftemp}
 
 echo -e "脚本目录：${ShellDir}"
