@@ -12,8 +12,6 @@ LogDir=${ShellDir}/log
 [ ! -d ${LogDir} ] && mkdir -p ${LogDir}
 ScriptsDir=${ShellDir}/scripts
 Scripts2Dir=${ShellDir}/scripts2
-PanelDir=${ShellDir}/panel
-panelpwd=${ConfigDir}/auth.json
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileConftemp=${ConfigDir}/config.sh.temp
@@ -33,6 +31,9 @@ SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 WhichDep=$(grep "/jd_shell" "${ShellDir}/.git/config")
 Scripts2URL=https://gitee.com/highdimen/jd_scripts
+PanelDir=${ShellDir}/panel
+panelpwd=${ConfigDir}/auth.json
+panelpwdSample=${ShellDir}/sample/auth.json
 
 if [[ ${WhichDep} == *github* ]]; then
   ScriptsURL=https://gitee.com/highdimen/clone_scripts
@@ -485,8 +486,8 @@ function panelinit {
   fi
   echo -e "控制面板检查&更新完成"
   sleep 1
-  if [ ! -s ${ConfigDir}/auth.json ]; then
-    cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
+  if [ ! -s ${panelpwd} ]; then
+    cp -f ${panelpwdSample} ${panelpwd}
     echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
   fi
 }
