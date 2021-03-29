@@ -85,12 +85,27 @@
 
 ### [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释都含有大量教程，请自行翻阅❗❗
 
+<details>
+<summary> </summary>
+
+##### 小彩蛋
+
+#### 欢迎加入交流
+<!--
+好家伙！！
+TG群：t.me/jd_shell
+-->
+</details>
+
 ## 说明
 
 1. 即将推出远程面板功能，需安装数据库php等，非服务器的用户可以忽略
 
-## 更新日志
 
+## 更新日志
+<details>
+<summary> </summary>
+ 
 > 只记录大的更新，小修小改不记录。
 
 2021-02-19，面板功能集成至jd.sh内，运行jd.sh会出现操作提示
@@ -100,3 +115,4 @@
 2020-01-21，增加shylocks/Loon脚本。
 
 2021-01-15，如果本机上安装了pm2，则挂机程序以pm2启动，否则以nohup启动。
+</details>
