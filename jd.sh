@@ -12,6 +12,7 @@ ScriptsDir=${ShellDir}/scripts
 PanelDir=${ShellDir}/panel
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
+FileConftemp=${ConfigDir}/config.sh.temp
 FileConfSample=${ShellDir}/sample/config.sh.sample
 panelpwd=${ConfigDir}/auth.json
 LogDir=${ShellDir}/log
@@ -291,8 +292,7 @@ function Run_Normal {
 
   if [ ${AutoHelpme} = true ]; then
     if [ -f ${LogDir}/export_sharecodes/export_sharecodes.log ]; then
-      cp -f ${FileConf} ${ConfigDir}/config.sh.temp
-      cat ${LogDir}/export_sharecodes/export_sharecodes.log >> ${ConfigDir}/config.sh.temp
+      [ ! -s ${FileConftemp} ] && cp -f ${FileConf} ${ConfigDir}/config.sh.temp && cat ${LogDir}/export_sharecodes/export_sharecodes.log >> ${ConfigDir}/config.sh.temp
       FileConf=${ConfigDir}/config.sh.temp
       Import_Conf && Detect_Cron && Set_Env
     else
