@@ -331,7 +331,7 @@ function Run_Normal {
     cd ${WhichDir}
 #    env
     [ ${TasksTerminateTime} = 0 ] &&  node ${FileName}.js | tee ${LogFile}
-    [ ${TasksTerminateTime} ! = 0 ] && timeout ${TasksTerminateTime} node ${FileName}.js | tee ${LogFile}
+    [ ${TasksTerminateTime} -ne 0 ] && timeout ${TasksTerminateTime} node ${FileName}.js | tee ${LogFile}
   else
     echo -e "\n在${ScriptsDir}、${ScriptsDir}/backUp、${ConfigDir}三个目录下均未检测到 $1 脚本的存在，请确认...\n"
     Help
