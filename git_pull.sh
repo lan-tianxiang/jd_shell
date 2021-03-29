@@ -2,8 +2,8 @@
 
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
-## Modified： 2021-03-22
-## Version： v3.6.1
+## Modified： 2021-03-29
+## Version： v3.6.2
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -13,6 +13,7 @@ LogDir=${ShellDir}/log
 ScriptsDir=${ShellDir}/scripts
 Scripts2Dir=${ShellDir}/scripts2
 PanelDir=${ShellDir}/panel
+panelpwd=${ConfigDir}/auth.json
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileConftemp=${ConfigDir}/config.sh.temp
