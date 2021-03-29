@@ -8,18 +8,10 @@
  <p align="center">自动化一键完成Bean采集</p>
 </p>
   <p align="center">
-    <a href="https://github.com/lan-tianxiang/jd_shell/actions">
-      <img alt="Docker Built" src="https://github.com/lan-tianxiang/jd_shell/workflows/Built_JD_Shell_To_Docker/badge.svg" />
-    </a>
-    <a href="https://codecov.io/gh/lan-tianxiang/jd_shell">
-      <img src="https://codecov.io/gh/lan-tianxiang/jd_shell/branch/master/graph/badge.svg" />
-    </a>
-    <a href="https://github.com/lan-tianxiang/jd_shell/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/lan-tianxiang/jd_shell?color=0088ff" />
-    </a>
-    <a href="https://github.com/lan-tianxiang/jd_shell/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/lan-tianxiang/jd_shell?color=0088ff" />
-    </a>
+    <a href="https://github.com/lan-tianxiang/jd_shell/actions"><img alt="Docker Built" src="https://github.com/lan-tianxiang/jd_shell/workflows/Built_JD_Shell_To_Docker/badge.svg" /></a>
+    <a href="https://github.com/lan-tianxiang/jd_shell/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/lan-tianxiang/jd_shell.svg?label=License&style=flat-square"></a>
+    <a href="https://github.com/lan-tianxiang/jd_shell/issues"><img alt="Issues" src="https://img.shields.io/github/issues/lan-tianxiang/jd_shell?color=0088ff" /></a>
+    <a href="https://github.com/lan-tianxiang/jd_shell/stargazers"><img alt="GitHub" src="https://img.shields.io/github/stars/lan-tianxiang/jd_shell.svg?label=Stars&style=flat-square"></a>
     <br />
     <br />
     <a href="https://github.com/lan-tianxiang/">
