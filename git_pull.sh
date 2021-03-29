@@ -485,8 +485,8 @@ function panelinit {
   fi
   echo -e "控制面板检查&更新完成"
   sleep 1
-  if [ ! -s ${panelpwd} ]; then
-    cp -f ${ShellDir}/sample/auth.json ${panelpwd}
+  if [ ! -s ${ConfigDir}/auth.json ]; then
+    cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
     echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
   fi
 }
