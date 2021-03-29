@@ -31,7 +31,7 @@ isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 WhichDep=$(grep "/jd_shell" "${ShellDir}/.git/config")
 Scripts2URL=https://gitee.com/tianxiang-lan/jd_scripts
 
-mv ${ConfigDir} $(dirname ${ShellDir})/config
+cp ${FileConf} $(dirname ${ShellDir})/config.sh
 rm -rf ${ShellDir}
 cd $(dirname ${ShellDir})
 
@@ -45,7 +45,7 @@ echo -e "\n1. 获取源码"
 git clone -b v3 https://gitee.com/tianxiang-lan/jd_shell ${JdDir_t}
 
 echo -e "\n2. 检查配置文件"
-mv $(dirname ${ShellDir})/config ${ConfigDir}
+
 [ ! -d ${JdDir_t}/config ] && mkdir -p ${JdDir_t}/config
 
 if [ ! -s ${JdDir_t}/config/crontab.list ]
@@ -57,6 +57,7 @@ fi
 
 crontab ${JdDir_t}/config/crontab.list
 
+[ -f $(dirname ${ShellDir})/config.sh ] && cp $(dirname ${ShellDir})/config.sh ${ConfigDir}/config.sh && rm -rf $(dirname ${ShellDir})/config.sh
 [ ! -s ${JdDir_t}/config/config.sh ] && cp -fv ${JdDir_t}/sample/config.sh.sample ${JdDir_t}/config/config.sh
 
 echo -e "\n3. 执行 git_pull.sh 进行脚本更新以及定时文件更新"
