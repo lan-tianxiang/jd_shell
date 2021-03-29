@@ -3,7 +3,7 @@
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
 ## Modified： 2021-03-29
-## Version： v3.11.0
+## Version： v3.12.0
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -21,6 +21,7 @@ ListCron=${ConfigDir}/crontab.list
 
 ## 常量
 AutoHelpme=false
+TasksTerminateTime=0
 
 ## 导入config.sh
 function Import_Conf {
@@ -329,7 +330,8 @@ function Run_Normal {
     [ ! -d ${LogDir}/${FileName} ] && mkdir -p ${LogDir}/${FileName}
     cd ${WhichDir}
 #    env
-    node ${FileName}.js | tee ${LogFile}
+    [ ${TasksTerminateTime} = 0 ] &&  node ${FileName}.js | tee ${LogFile}
+    [ ${TasksTerminateTime} ! = 0 ] && timeout ${TasksTerminateTime} node ${FileName}.js | tee ${LogFile}
   else
     echo -e "\n在${ScriptsDir}、${ScriptsDir}/backUp、${ConfigDir}三个目录下均未检测到 $1 脚本的存在，请确认...\n"
     Help
