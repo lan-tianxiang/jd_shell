@@ -8,7 +8,6 @@
  <p align="center">自动化一键完成Bean采集</p>
 </p>
   <p align="center">
-    <a href="https://github.com/lan-tianxiang/jd_shell/actions"><img alt="Docker Built" src="https://github.com/lan-tianxiang/jd_shell/workflows/Built_JD_Shell_To_Docker/badge.svg" /></a>
     <a href="https://github.com/lan-tianxiang/jd_shell/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/lan-tianxiang/jd_shell.svg?label=License&style=flat-square"></a>
     <a href="https://github.com/lan-tianxiang/jd_shell/issues"><img alt="Issues" src="https://img.shields.io/github/issues/lan-tianxiang/jd_shell?color=0088ff" /></a>
     <a href="https://github.com/lan-tianxiang/jd_shell/stargazers"><img alt="GitHub" src="https://img.shields.io/github/stars/lan-tianxiang/jd_shell.svg?label=Stars&style=flat-square"></a>
@@ -57,7 +56,7 @@
 
 - [OpenWRT、MacOs等类UNIX系统](https://github.com/lan-tianxiang/jd_shell/wiki/Unix)  🔻
 
-## `Docker`
+## `Docker` <a href="https://github.com/lan-tianxiang/jd_shell/actions"><img alt="Docker Built" src="https://github.com/lan-tianxiang/jd_shell/workflows/Built_JD_Shell_To_Docker/badge.svg" /></a>
 
 - [Docker](https://github.com/lan-tianxiang/jd_shell/wiki/Docker)  🔻
 
