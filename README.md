@@ -99,6 +99,7 @@
 <!--
 好家伙！！
 TG群：t.me/jd_shell
+QQ群：967451175
 -->
 </details>
 
