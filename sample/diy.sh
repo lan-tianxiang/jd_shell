@@ -12,10 +12,10 @@ author_list="shylocks whyour 799953468 i-chenzhe"
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
 
 ## 目前使用本人收集的脚本库项目用于代替 CDN 加速
-scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
-scripts_base_url_2=https://gitee.com/SuperManito/scripts/raw/master/
-scripts_base_url_3=https://gitee.com/SuperManito/scripts/raw/master/
-scripts_base_url_4=https://gitee.com/SuperManito/scripts/raw/master/
+scripts_base_url_1=https://gitee.com/lan-tianxiang/jd_scripts/raw/master/
+scripts_base_url_2=https://gitee.com/lan-tianxiang/jd_scripts/raw/master/
+scripts_base_url_3=https://gitee.com/lan-tianxiang/jd_scripts/raw/master/
+scripts_base_url_4=https://gitee.com/lan-tianxiang/jd_scripts/raw/master/
 
 ## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/whyour/hundun/master/quanx/
 
