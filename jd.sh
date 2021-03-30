@@ -7,7 +7,7 @@
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
-[ ${JD_DIR} ] && HelpJd=jd.sh || HelpJd=jd.sh
+[ ${JD_DIR} ] && HelpJd=jd || HelpJd=jd.sh
 ScriptsDir=${ShellDir}/scripts
 PanelDir=${ShellDir}/panel
 ConfigDir=${ShellDir}/config
