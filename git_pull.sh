@@ -537,7 +537,7 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   Output_ListJsDrop
   Del_Cron
   Add_Cron
-  #ExtraShell
+  ExtraShell
   Run_All
   panelinit
   echo -e "活动脚本更新完成......\n"
