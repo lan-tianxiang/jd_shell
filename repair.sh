@@ -3,7 +3,7 @@
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
 ## Modified： 2021-03-27
-## Version： v0.0.1
+## Version： v0.0.2
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -32,6 +32,7 @@ WhichDep=$(grep "/jd_shell" "${ShellDir}/.git/config")
 Scripts2URL=https://gitee.com/tianxiang-lan/jd_scripts
 
 cp ${FileConf} $(dirname ${ShellDir})/config.sh
+pkill -9 node
 rm -rf ${ShellDir}
 cd $(dirname ${ShellDir})
 
