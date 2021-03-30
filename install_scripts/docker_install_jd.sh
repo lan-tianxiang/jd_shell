@@ -132,7 +132,7 @@ Need_ConfigDir() {
     if [ "$need_config_dir" = "2" ]; then
         NeedDirConfig=''
     else
-        NeedDirConfig="-v $ConfigDir:/jd/config"
+        NeedDirConfig="-v $ConfigDir:/roor/jd/config"
         echo -e "\n\e[33m如果有用于存放配置文件的远程 Git 仓库，请输入地址，否则直接回车（看不懂也回车）:\e[0m"
         read remote_config
         if [ -n "$remote_config" ]; then
@@ -150,7 +150,7 @@ Need_LogDir() {
     if [ "$need_log_dir" = "2" ]; then
         NeedDirLog=''
     else
-        NeedDirLog="-v $LogDir:/jd/log"
+        NeedDirLog="-v $LogDir:/root/jd/log"
         mkdir -p $LogDir
     fi
 }
@@ -160,7 +160,7 @@ Need_ScriptsDir() {
     echo -n -e "\e[33m输入您的选择->\e[0m"
     read need_scripts_dir
     if [ "$need_scripts_dir" = "1" ]; then
-        NeedDirScripts="-v $ScriptsDir:/jd/scripts"
+        NeedDirScripts="-v $ScriptsDir:/root/jd/scripts"
         mkdir -p $ScriptsDir
     fi
 }
