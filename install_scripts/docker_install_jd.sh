@@ -132,7 +132,7 @@ Need_ConfigDir() {
     if [ "$need_config_dir" = "2" ]; then
         NeedDirConfig=''
     else
-        NeedDirConfig="-v $ConfigDir:/roor/jd/config"
+        NeedDirConfig="-v $ConfigDir:/root/jd/config"
         echo -e "\n\e[33m如果有用于存放配置文件的远程 Git 仓库，请输入地址，否则直接回车（看不懂也回车）:\e[0m"
         read remote_config
         if [ -n "$remote_config" ]; then
