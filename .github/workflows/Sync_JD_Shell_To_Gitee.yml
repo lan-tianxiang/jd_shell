@@ -2,7 +2,7 @@ name: Sync_JD_Shell_To_Gitee
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '1,6,11,16,21,26,31,36,41,46,51,55 * * * *'
 jobs:
   sync:
     runs-on: ubuntu-latest
