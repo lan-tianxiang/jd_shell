@@ -311,6 +311,14 @@ function panelud {
   panelon
 }
 
+## 面板更新
+function webshell {
+  cd ${ShellDir}/webshell
+  Npm_InstallSub
+  pm2 update
+  pm2 start index.js
+}
+
 ## 重置密码
 function Reset_Pwd {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
