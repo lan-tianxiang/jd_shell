@@ -1,12 +1,5 @@
 'use strict'
-/* jshint esversion: 6, asi: true, node: true */
-/*
- * index.js
- *
- * WebSSH2 - Web to SSH2 gateway
- * Bill Church - https://github.com/billchurch/WebSSH2 - May 2017
- *
- */
+
 
 var config = require('./server/app').config
 var server = require('./server/app').server
