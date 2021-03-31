@@ -285,6 +285,26 @@ function panelinit {
   fi
 }
 
+
+
+## 开启面板
+function panelon {
+  cd ${PanelDir}
+  pm2 start server.js
+}
+
+## 关闭面板
+function paneloff {
+  cd ${PanelDir}
+  pm2 stop server.js
+}
+
+## 面板状态
+function panelinfo {
+  cd ${PanelDir}
+  pm2 status server.js
+}
+
 ## 重置密码
 function Reset_Pwd {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
@@ -353,8 +373,14 @@ case $# in
       Run_HangUp
     elif [[ $1 == resetpwd ]]; then
       Reset_Pwd
-    elif [[ $1 == panelinit ]]; then
+    elif [[ $1 == panelon ]]; then
       panelinit
+      panelstart
+    elif [[ $1 == paneloff ]]; then
+      paneloff
+    elif [[ $1 == panelinfo ]]; then
+      panelinfo
+    
     else
       Run_Normal $1
     fi
