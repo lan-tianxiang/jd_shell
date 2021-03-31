@@ -33,6 +33,7 @@ Scripts2URL=https://gitee.com/tianxiang-lan/jd_scripts
 
 cp ${FileConf} $(dirname ${ShellDir})/config.sh
 pkill -9 node
+bash ${ShellDir}/jd.sh paneloff
 rm -rf ${ShellDir}
 cd $(dirname ${ShellDir})
 
