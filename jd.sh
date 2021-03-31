@@ -2,8 +2,8 @@
 
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
-## Modified： 2021-03-29
-## Version： v3.12.0
+## Modified： 2021-03-31
+## Version： v3.13.0
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -288,7 +288,7 @@ function panelinit {
 
 
 ## 开启面板
-function panelon {
+function panelstart {
   cd ${PanelDir}
   pm2 start server.js
 }
