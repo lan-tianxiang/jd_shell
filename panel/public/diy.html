@@ -4,15 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>自定义脚本</title>
+    <title>自定义脚本 · 京东薅羊毛控制面板</title>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/codemirror.min.js"></script>
+    <script type="text/javascript" src="./js/comment.js"></script>
     <script type="text/javascript" src="./js/shell.js"></script>
+    <script type="text/javascript" src="./js/sublime.js"></script>
     <script type="text/javascript" src="./js/sweetalert2.js"></script>
+    <script type="text/javascript" src="./js/prefixfree.min.js"></script>
+
+    <link rel="stylesheet" href="./css/normalize.min.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/codemirror.min.css">
     <link rel="stylesheet" type="text/css" href="./css/twilight.css">
     <link rel="stylesheet" type="text/css" href="./css/dracula.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="icon" type="image/x-icon" href="https://www.jd.com/favicon.ico" />
 </head>
 
 <body>
@@ -21,30 +28,37 @@
             <nav>
                 <ul>
                     <li><a href="./home">首页</a></li>
-                    <li><a href="./crontab">定时设定</a></li>
                     <li><a href="./diff">对比工具</a></li>
-                    <li><a href="./shareCode">Share Code</a></li>
+                    <li><a href="./crontab">定时任务设定</a></li>
+                    <li><a href="./run">手动执行脚本</a></li>
                     <li class="active"><a href="./diy">自定义脚本</a></li>
                     <li><a href="./log">日志查询</a></li>
+                    <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
                     <li><a href="./logout">退出</a></li>
                 </ul>
             </nav>
             <header>
-                <h1>自定义脚本</h1>
-                <button id="save" title="保存">保存 diy.sh</button>
-                <br/>
-                <p>启用自定义脚本需要在 config.sh 中将参数 EnableExtraShell 设置为 true</p>
-                <br/>
-                <p>此处编辑的内容将保存在 config/diy.sh </p>
+                <h1>在线编辑工具</h1>
+                <button id="save" title="保存">保存</button><button id="wrap" title="切换换行">切换换行</button><button title="使用帮助"
+                    onclick="javascript:window.open('https://gitee.com/SuperManito/JD-FreeFuck/wikis/Linux-Use-And-Update-Tutorial?sort_id=3629234#5-%E4%BD%BF%E7%94%A8-diy-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC%E6%89%A9%E5%B1%95%E6%B4%BB%E5%8A%A8%E8%84%9A%E6%9C%AC%E6%95%B0%E9%87%8F')">Linux
+                    版本使用帮助</button><button title="使用帮助"
+                    onclick="javascript:window.open('https://gitee.com/SuperManito/JD-FreeFuck/wikis/Docker-Use-And-Update-Tutorial?sort_id=3629233#5-%E4%BD%BF%E7%94%A8-diy-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%84%9A%E6%9C%AC%E6%89%A9%E5%B1%95%E6%B4%BB%E5%8A%A8%E8%84%9A%E6%9C%AC%E6%95%B0%E9%87%8F')">Docker
+                    版本使用帮助</button>
+                <br />
             </header>
-            <h4>diy.sh</h4>
+            <h4>自定义脚本&#12288;&#12288;<font size="2">温馨提示：此脚本的用途为收集并添加第三方作者编写的活动脚本，关于如何启用该功能详见配置文件中的《DIY脚本功能设置》模块。</font>
+            </h4>
             <div class="wrapper">
                 <textarea id="code" name="code"></textarea>
             </div>
         </div>
     </div>
     <script>
+        $.ajaxSetup({
+            cache: false
+        });
+
         $(document).ready(function () {
             var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
                 lineNumbers: true,
@@ -52,20 +66,23 @@
                 styleActiveLine: true,
                 matchBrackets: true,
                 mode: 'shell',
-                theme: 'dracula'
+                theme: 'dracula',
+                keyMap: 'sublime'
             });
-            let timeStamp = (new Date()).getTime()
-            $.get("./api/config/diy?t="+timeStamp, function (data) {
+            $.get('./api/config/diy', function (data) {
                 editor.setValue(data);
             });
 
             $('#save').click(function () {
                 var confContent = editor.getValue();
                 let timeStamp = (new Date()).getTime()
-                $.post('./api/save?t='+timeStamp, { content: confContent, name: "diy.sh" }, function (data) {
+                $.post('./api/save?t=' + timeStamp, {
+                    content: confContent,
+                    name: "diy.sh"
+                }, function (data) {
                     let icon = (data.err == 0) ? "success" : "error"
                     Swal.fire({
-                        title:data.title,
+                        title: data.title,
                         text: data.msg,
                         icon: icon
                     }).then((result) => {
@@ -73,8 +90,12 @@
                     })
                 });
             });
-        });
 
+            $('#wrap').click(function () {
+                var lineWrapping = editor.getOption('lineWrapping');
+                editor.setOption('lineWrapping', !lineWrapping);
+            });
+        });
     </script>
 
 </body>

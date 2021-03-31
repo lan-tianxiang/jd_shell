@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>日志查询 · 京东薅羊毛控制面板</title>
+    <title>查看脚本 · 京东薅羊毛控制面板</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/metismenu/dist/metisMenu.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/elektron/dist/elektron.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" />
@@ -32,8 +32,8 @@
                             <li><a href="./crontab">定时任务设定</a></li>
                             <li><a href="./run">手动执行脚本</a></li>
                             <li><a href="./diy">自定义脚本</a></li>
-                            <li class="active"><a href="./log">日志查询</a></li>
-                            <li><a href="./viewScripts">查看脚本</a></li>
+                            <li><a href="./log">日志查询</a></li>
+                            <li class="active"><a href="./viewScripts">查看脚本</a></li>
                             <li><a href="./changepwd">修改密码</a></li>
                             <li><a href="./logout">退出</a></li>
                         </ul>
@@ -41,7 +41,7 @@
                     <header>
                         <a id="toggleIcon" class="onoffcanvas-toggler is-animated" href="#elk-side"
                             data-toggle="onoffcanvas"></a>
-                        <h1>日志查询</h1>
+                        <h1>查看脚本</h1>
                         <button id="wrap" title="切换换行">切换换行</button>
                     </header>
                 </div>
@@ -60,7 +60,7 @@
                     </aside>
                     <div class="elk-main">
                         <div class="wrapper">
-                            <textarea id="code" name="code">  你还没有选择日志文件！</textarea>
+                            <textarea id="code" name="code">  你还没有选择脚本文件！</textarea>
                         </div>
                     </div>
                 </div>
@@ -74,6 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/elektron"></script>
     <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
     <script src="./js/codemirror.min.js"></script>
+    <script src="./js/javascript.js"></script>
     <script>
         $.ajaxSetup({
             cache: false
@@ -87,22 +88,22 @@
                 styleActiveLine: true,
                 matchBrackets: true,
                 readOnly: true,
-                mode: 'shell',
+                mode: 'javascript',
                 theme: 'dracula'
             });
 
-            $.get('./api/logs', function (data) {
+            $.get('./api/scripts', function (data) {
                 var dirs = data.dirs;
                 var navHtml = "";
                 for (let index in dirs) {
                     var dirName = dirs[index].dirName;
-                    // 文件在log/目录时
+                    // 文件在scripts/目录时
                     if (dirName === '@') {
                         var row = `<li class="nav-item">`;
                         for (let filesKey in dirs[index].files) {
                             var fileName = dirs[index].files[filesKey];
                             row +=
-                                `<a class="nav-link" href="javascript:logDetail('${dirName}', '${fileName}');">${fileName}</a>`
+                                `<a class="nav-link" href="javascript:viewScript('${dirName}', '${fileName}');">${fileName}</a>`
                         }
                         row += `</li>`;
                     } else {
@@ -113,7 +114,7 @@
                         for (let filesKey in dirs[index].files) {
                             var fileName = dirs[index].files[filesKey];
                             row +=
-                                `<a class="nav-link" href="javascript:logDetail('${dirName}', '${fileName}');">${fileName}</a>`
+                                `<a class="nav-link" href="javascript:viewScript('${dirName}', '${fileName}');">${fileName}</a>`
                         }
                         row += `</li>
                                     </ul>
@@ -126,12 +127,12 @@
                 $('#menu1').metisMenu();
             });
 
-            window.logDetail = function logDetail(dir, file) {
+            window.viewScript = function viewScript(dir, file) {
                 if (window.innerWidth < 993) {
                     dispatch(document.getElementById('toggleIcon'), 'click');
                 }
 
-                $.get(`./api/logs/${dir}/${file}`, function (data) {
+                $.get(`./api/scripts/${dir}/${file}`, function (data) {
                     editor.setValue(data);
                 });
             }

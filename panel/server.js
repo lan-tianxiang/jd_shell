@@ -1,4 +1,3 @@
-
 /*
  * @Author: Jerrykuku https://github.com/jerrykuku
  * @Date: 2021-1-8
@@ -8,10 +7,15 @@
 
 var express = require('express');
 var session = require('express-session');
+var compression = require('compression');
 var bodyParser = require('body-parser');
 var got = require('got');
 var path = require('path');
 var fs = require('fs');
+var {
+    execSync,
+    exec
+} = require('child_process');
 
 var rootPath = path.resolve(__dirname, '..')
 // config.sh 文件所在目录
@@ -24,17 +28,17 @@ var crontabFile = path.join(rootPath, 'config/crontab.list');
 var confBakDir = path.join(rootPath, 'config/bak/');
 // auth.json 文件目录
 var authConfigFile = path.join(rootPath, 'config/auth.json');
-// Share Code 文件目录
-var shareCodeDir = path.join(rootPath, 'log/jd_get_share_code/');
 // diy.sh 文件目录
 var diyFile = path.join(rootPath, 'config/diy.sh');
 // 日志目录
 var logPath = path.join(rootPath, 'log/');
+// 脚本目录
+var ScriptsPath = path.join(rootPath, 'scripts/');
 
 var authError = "错误的用户名密码，请重试";
 var loginFaild = "请先登录!";
 
-var configString = "config sample crontab shareCode diy";
+var configString = "config sample crontab diy";
 
 var s_token, cookies, guid, lsid, lstoken, okl_token, token, userCookie = ""
 
@@ -74,7 +78,13 @@ function getCookie(response) {
 
 async function step1() {
     try {
-        s_token, cookies, guid, lsid, lstoken, okl_token, token = ""
+        s_token,
+        cookies,
+        guid,
+        lsid,
+        lstoken,
+        okl_token,
+        token = ""
         let timeStamp = (new Date()).getTime()
         let url = 'https://plogin.m.jd.com/cgi-bin/mm/new_login_entrance?lang=chs&appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=' + timeStamp + '&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport'
         const response = await got(url, {
@@ -91,7 +101,8 @@ async function step1() {
         });
 
         praseSetCookies(response)
-    } catch (error) {
+    }
+    catch (error) {
         cookies = "";
         console.log(error.response.body);
     }
@@ -164,7 +175,11 @@ async function checkLogin() {
     } catch (error) {
         console.log(error.response.body);
         let res = {}
-        res.body = { check_ip: 0, errcode: 222, message: '出错' }
+        res.body = {
+            check_ip: 0,
+            errcode: 222,
+            message: '出错'
+        }
         res.headers = {}
         return res;
     }
@@ -234,6 +249,7 @@ function saveNewConf(file, content) {
             break;
         case "crontab.list":
             fs.writeFileSync(crontabFile, content);
+            execSync('crontab ' + crontabFile);
             break;
         case "diy.sh":
             fs.writeFileSync(diyFile, content);
@@ -283,13 +299,35 @@ function getLastModifyFilePath(dir) {
 
 
 var app = express();
+// gzip压缩
+app.use(compression({
+    level: 6,
+    filter: shouldCompress
+}));
+
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false;
+    }
+
+    // fallback to standard filter function
+    return compression.filter(req, res);
+}
+
 app.use(session({
     secret: 'secret',
+    name: `connect.${Math.random()}`,
     resave: true,
     saveUninitialized: true
 }));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
@@ -310,7 +348,7 @@ app.get('/changepwd', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/pwd.html'));
     } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 });
 
@@ -325,16 +363,28 @@ app.get('/qrcode', function (request, response) {
                 await step1();
                 const qrurl = await step2();
                 if (qrurl != 0) {
-                    response.send({ err: 0, qrcode: qrurl });
+                    response.send({
+                        err: 0,
+                        qrcode: qrurl
+                    });
                 } else {
-                    response.send({ err: 1, msg: "错误" });
+                    response.send({
+                        err: 1,
+                        msg: "错误"
+                    });
                 }
             } catch (err) {
-                response.send({ err: 1, msg: err });
+                response.send({
+                    err: 1,
+                    msg: err
+                });
             }
         })();
     } else {
-        response.send({ err: 1, msg: loginFaild });
+        response.send({
+            err: 1,
+            msg: loginFaild
+        });
     }
 })
 
@@ -349,16 +399,28 @@ app.get('/cookie', function (request, response) {
                 const cookie = await checkLogin();
                 if (cookie.body.errcode == 0) {
                     let ucookie = getCookie(cookie);
-                    response.send({ err: 0, cookie: ucookie });
+                    response.send({
+                        err: 0,
+                        cookie: ucookie
+                    });
                 } else {
-                    response.send({ err: cookie.body.errcode, msg: cookie.body.message });
+                    response.send({
+                        err: cookie.body.errcode,
+                        msg: cookie.body.message
+                    });
                 }
             } catch (err) {
-                response.send({ err: 1, msg: err });
+                response.send({
+                    err: 1,
+                    msg: err
+                });
             }
         })();
     } else {
-        response.send({ err: 1, msg: loginFaild });
+        response.send({
+            err: 1,
+            msg: loginFaild
+        });
     }
 })
 
@@ -378,10 +440,6 @@ app.get('/api/config/:key', function (request, response) {
                     break;
                 case 'crontab':
                     content = getFileContentByName(crontabFile);
-                    break;
-                case 'shareCode':
-                    let shareCodeFile = getLastModifyFilePath(shareCodeDir);
-                    content = getFileContentByName(shareCodeFile);
                     break;
                 case 'diy':
                     content = getFileContentByName(diyFile);
@@ -406,7 +464,7 @@ app.get('/home', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/home.html'));
     } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 
 });
@@ -418,19 +476,7 @@ app.get('/diff', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/diff.html'));
     } else {
-        response.redirect('./');
-    }
-
-});
-
-/**
- * Share Code 页面
- */
-app.get('/shareCode', function (request, response) {
-    if (request.session.loggedin) {
-        response.sendFile(path.join(__dirname + '/public/shareCode.html'));
-    } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 
 });
@@ -442,7 +488,7 @@ app.get('/crontab', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/crontab.html'));
     } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 
 });
@@ -454,10 +500,96 @@ app.get('/diy', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/diy.html'));
     } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 
 });
+
+/**
+ * 手动执行脚本 页面
+ */
+app.get('/run', function (request, response) {
+    if (request.session.loggedin) {
+        response.sendFile(path.join(__dirname + '/public/run.html'));
+    } else {
+        response.redirect('/');
+    }
+});
+
+app.post('/runCmd', function (request, response) {
+    if (request.session.loggedin) {
+        const cmd = `cd ${rootPath};` + request.body.cmd;
+        const delay = request.body.delay || 0;
+        // console.log('before exec');
+        // exec maxBuffer 20MB
+        exec(cmd, {
+            maxBuffer: 1024 * 1024 * 20
+        }, (error, stdout, stderr) => {
+            // console.log(error, stdout, stderr);
+            // 根据传入延时返回数据，有时太快会出问题
+            setTimeout(() => {
+                if (error) {
+                    console.error(`执行的错误: ${error}`);
+                    response.send({
+                        err: 1,
+                        msg: stdout ? `${stdout}${error}` : `${error}`
+                    });
+                    return;
+
+                }
+
+                if (stdout) {
+                    // console.log(`stdout: ${stdout}`)
+                    response.send({
+                        err: 0,
+                        msg: `${stdout}`
+                    });
+                    return;
+
+                }
+
+                if (stderr) {
+                    console.error(`stderr: ${stderr}`);
+                    response.send({
+                        err: 1,
+                        msg: `${stderr}`
+                    });
+                    return;
+                }
+
+                response.send({
+                    err: 0,
+                    msg: '执行结束，无结果返回。'
+                });
+            }, delay);
+        });
+    } else {
+        response.redirect('/');
+    }
+});
+
+/**
+ * 使用jsName获取最新的日志
+ */
+app.get('/runLog/:jsName', function (request, response) {
+    if (request.session.loggedin) {
+        const jsName = request.params.jsName;
+        let shareCodeFile = getLastModifyFilePath(path.join(rootPath, `log/${jsName}/`));
+        if (jsName === 'rm_log') {
+            shareCodeFile = path.join(rootPath, `log/${jsName}.log`)
+        }
+
+        if (shareCodeFile) {
+            const content = getFileContentByName(shareCodeFile);
+            response.setHeader("Content-Type", "text/plain");
+            response.send(content);
+        } else {
+            response.send("no logs");
+        }
+    } else {
+        response.send(loginFaild);
+    }
+})
 
 
 /**
@@ -473,13 +605,20 @@ app.post('/auth', function (request, response) {
             if (username == con.user && password == con.password) {
                 request.session.loggedin = true;
                 request.session.username = username;
-                response.send({ err: 0 });
+                response.send({
+                    err: 0
+                });
             } else {
-                response.send({ err: 1, msg: authError });
+                response.send({
+                    err: 1,
+                    msg: authError
+                });
             }
         } else {
-            response.send({ err: 1, msg: "请输入用户名密码!" });
-
+            response.send({
+                err: 1,
+                msg: "请输入用户名密码!"
+            });
         }
     });
 
@@ -496,13 +635,26 @@ app.post('/changepass', function (request, response) {
             user: username,
             password: password
         }
-        fs.writeFile(authConfigFile, JSON.stringify(config), function (err) {
-            if (err) {
-                response.send({ err: 1, msg: "写入错误请重试!" });
-            } else {
-                response.send({ err: 0, msg: "更新成功!" });
-            }
-        })
+        if (username && password) {
+            fs.writeFile(authConfigFile, JSON.stringify(config), function (err) {
+                if (err) {
+                    response.send({
+                        err: 1,
+                        msg: "写入错误请重试!"
+                    });
+                } else {
+                    response.send({
+                        err: 0,
+                        msg: "更新成功!"
+                    });
+                }
+            });
+        } else {
+            response.send({
+                err: 1,
+                msg: "请输入用户名密码!"
+            });
+        }
 
     } else {
         response.send(loginFaild);
@@ -515,7 +667,7 @@ app.post('/changepass', function (request, response) {
  */
 app.get('/logout', function (request, response) {
     request.session.destroy()
-    response.redirect('./');
+    response.redirect('/');
 
 });
 
@@ -528,9 +680,17 @@ app.post('/api/save', function (request, response) {
         let postContent = request.body.content;
         let postfile = request.body.name;
         saveNewConf(postfile, postContent);
-        response.send({ err: 0, title: "保存成功! ", msg: "将自动刷新页面查看修改后的 " + postfile + " 文件" });
+        response.send({
+            err: 0,
+            title: "保存成功! ",
+            msg: "将自动刷新页面查看修改后的 " + postfile + " 文件"
+        });
     } else {
-        response.send({ err: 1, title: "保存失败! ", msg: loginFaild });
+        response.send({
+            err: 1,
+            title: "保存失败! ",
+            msg: loginFaild
+        });
     }
 
 });
@@ -542,7 +702,7 @@ app.get('/log', function (request, response) {
     if (request.session.loggedin) {
         response.sendFile(path.join(__dirname + '/public/tasklog.html'));
     } else {
-        response.redirect('./');
+        response.redirect('/');
     }
 });
 
@@ -553,6 +713,7 @@ app.get('/api/logs', function (request, response) {
     if (request.session.loggedin) {
         var fileList = fs.readdirSync(logPath, 'utf-8');
         var dirs = [];
+        var rootFiles = [];
         for (var i = 0; i < fileList.length; i++) {
             var stat = fs.lstatSync(logPath + fileList[i]);
             // 是目录，需要继续
@@ -560,14 +721,21 @@ app.get('/api/logs', function (request, response) {
                 var fileListTmp = fs.readdirSync(logPath + '/' + fileList[i], 'utf-8');
                 fileListTmp.reverse();
                 var dirMap = {
-                    "dirName": fileList[i],
-                    "files": fileListTmp
+                    dirName: fileList[i],
+                    files: fileListTmp
                 }
                 dirs.push(dirMap);
+            } else {
+                rootFiles.push(fileList[i]);
             }
         }
+
+        dirs.push({
+            dirName: '@',
+            files: rootFiles
+        });
         var result = {
-            "dirs": dirs,
+            dirs
         };
         response.send(result);
 
@@ -582,7 +750,12 @@ app.get('/api/logs', function (request, response) {
  */
 app.get('/api/logs/:dir/:file', function (request, response) {
     if (request.session.loggedin) {
-        var filePath = logPath + request.params.dir + '/' + request.params.file;
+        let filePath;
+        if (request.params.dir === '@') {
+            filePath = logPath + request.params.file;
+        } else {
+            filePath = logPath + request.params.dir + '/' + request.params.file;
+        }
         var content = getFileContentByName(filePath);
         response.setHeader("Content-Type", "text/plain");
         response.send(content);
@@ -591,6 +764,88 @@ app.get('/api/logs/:dir/:file', function (request, response) {
     }
 
 });
+
+
+/**
+ * 查看脚本 页面
+ */
+app.get('/viewScripts', function (request, response) {
+    if (request.session.loggedin) {
+        response.sendFile(path.join(__dirname + '/public/viewScripts.html'));
+    } else {
+        response.redirect('/');
+    }
+});
+
+/**
+ * 脚本列表
+ */
+app.get('/api/scripts', function (request, response) {
+    if (request.session.loggedin) {
+        var fileList = fs.readdirSync(ScriptsPath, 'utf-8');
+        var dirs = [];
+        var rootFiles = [];
+        var excludeRegExp = /(git)|(node_modules)|(icon)/;
+        for (var i = 0; i < fileList.length; i++) {
+            var stat = fs.lstatSync(ScriptsPath + fileList[i]);
+            // 是目录，需要继续
+            if (stat.isDirectory()) {
+                var fileListTmp = fs.readdirSync(ScriptsPath + '/' + fileList[i], 'utf-8');
+                fileListTmp.reverse();
+
+                if (excludeRegExp.test(fileList[i])) {
+                    continue;
+                }
+
+                var dirMap = {
+                    dirName: fileList[i],
+                    files: fileListTmp
+                }
+                dirs.push(dirMap);
+            } else {
+                if (excludeRegExp.test(fileList[i])) {
+                    continue;
+                }
+
+                rootFiles.push(fileList[i]);
+            }
+        }
+
+        dirs.push({
+            dirName: '@',
+            files: rootFiles
+        });
+        var result = {
+            dirs
+        };
+        response.send(result);
+
+    } else {
+        response.redirect('/');
+    }
+
+});
+
+/**
+ * 脚本文件
+ */
+app.get('/api/scripts/:dir/:file', function (request, response) {
+    if (request.session.loggedin) {
+        let filePath;
+        if (request.params.dir === '@') {
+            filePath = ScriptsPath + request.params.file;
+        } else {
+            filePath = ScriptsPath + request.params.dir + '/' + request.params.file;
+        }
+        var content = getFileContentByName(filePath);
+        response.setHeader("Content-Type", "text/plain");
+        response.send(content);
+    } else {
+        response.redirect('/');
+    }
+
+});
+
 
 checkConfigFile()
 
