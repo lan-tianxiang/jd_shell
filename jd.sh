@@ -177,6 +177,7 @@ function Help {
   echo -e "4. bash ${HelpJd} panelon   # 开启控制面板"
   echo -e "5. bash ${HelpJd} paneloff  # 关闭控制面板"
   echo -e "5. bash ${HelpJd} panelinfo # 控制面板状态"
+  echo -e "5. bash ${HelpJd} panelud # 更新面板(不丢失数据)"
   echo -e "6 bash ${HelpJd} resetpwd   # 重置控制面板用户名和密码"
   echo -e "\n针对用法1、用法2中的\"xxx\"，无需输入后缀\".js\"，另外，如果前缀是\"jd_\"的话前缀也可以省略。"
   echo -e "比如：   bash jd.sh jd_bean_change"
@@ -301,6 +302,15 @@ function panelinfo {
   pm2 status server.js
 }
 
+## 面板更新
+function panelinfo {
+  cd ${PanelDir}
+  paneloff
+  Npm_InstallSub
+  pm2 update
+  panelon
+}
+
 ## 重置密码
 function Reset_Pwd {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
@@ -375,7 +385,8 @@ case $# in
       paneloff
     elif [[ $1 == panelinfo ]]; then
       panelinfo
-    
+    elif [[ $1 == panelud ]]; then
+      panelud
     else
       Run_Normal $1
     fi
