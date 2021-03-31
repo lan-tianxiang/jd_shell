@@ -238,3 +238,4 @@ docker ps
 
 log "\n安装已经完成。\n请访问 http://<ip>:${PanelPort} 进行配置\n初始用户名：admin，初始密码：adminadmin"
 rm -f $ShellDir/$ShellName
+echo "进入容器命令为########docker exec -it jd /bin/bash"
