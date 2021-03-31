@@ -292,6 +292,7 @@ function panelon {
 function paneloff {
   cd ${PanelDir}
   pm2 stop server.js
+  pm2 delete server
 }
 
 ## 面板状态
