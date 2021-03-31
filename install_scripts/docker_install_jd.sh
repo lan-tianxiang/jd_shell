@@ -196,7 +196,10 @@ Need_Dir
 if [ $NewImage = true ]; then
     log "\n正在获取新镜像..."
     if [ $HasImage = true ]; then
-        docker image rm -f $DockerImage
+        docker stop jd
+        docker rm jd
+        docker rmi $(docker images jd -q)
+        # docker image rm -f $DockerImage
     fi
     if [ $GetImageType = "Local" ]; then
         rm -fr $WorkDir
