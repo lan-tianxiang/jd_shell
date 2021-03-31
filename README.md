@@ -44,12 +44,7 @@
 
 ### 通知
 - __2021/3/31 9:00 `Docker重要通知`__
-修复Docker遗留的隐藏BUG，为了保持docker和linux修复脚本的一致，请所有使用`Docker`安装的用户删除容器后重新部署。删除命令 ↓
-```
-docker stop jd
-docker rm jd
-docker rmi $(docker images jd -q)
-```
+修复Docker遗留的隐藏BUG，为了保持docker和linux修复脚本的一致，请所有使用`Docker`重新安装一键脚本，选择删除已部署的镜像即可。
 
 - __2021/3/30 9:00 `长期`__
 ㅤ有好用的第三方脚本欢迎提交到https://github.com/lan-tianxiang/jd_scripts
