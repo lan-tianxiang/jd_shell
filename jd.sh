@@ -241,7 +241,7 @@ function Npm_InstallSub {
 }
 
 ## panel install
-function panelinit {
+function panelon {
   [ -f ${PanelDir}/package.json ] && PackageListOld=$(cat ${PanelDir}/package.json)
   cd ${PanelDir}
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
@@ -286,13 +286,6 @@ function panelinit {
   fi
 }
 
-
-
-## 开启面板
-function panelstart {
-  cd ${PanelDir}
-  pm2 start server.js
-}
 
 ## 关闭面板
 function paneloff {
