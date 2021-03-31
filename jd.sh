@@ -368,8 +368,7 @@ case $# in
     elif [[ $1 == resetpwd ]]; then
       Reset_Pwd
     elif [[ $1 == panelon ]]; then
-      panelinit
-      panelstart
+      panelon
     elif [[ $1 == paneloff ]]; then
       paneloff
     elif [[ $1 == panelinfo ]]; then
