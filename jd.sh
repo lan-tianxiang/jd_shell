@@ -276,7 +276,7 @@ function panelon {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
   echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
   fi
-  if [ ! -x "$(command -v node)" ]; then
+  if [ ! -x "$(command -v pm2)" ]; then
       echo "正在安装pm2,方便后续集成并发功能"
       npm install pm2@latest -g
   fi
