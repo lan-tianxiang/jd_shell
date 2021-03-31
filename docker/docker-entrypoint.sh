@@ -36,7 +36,7 @@ echo -e "========================3. 启动挂机程序========================\n
 if [[ ${ENABLE_HANGUP} == true ]]; then
   . ${JD_DIR}/config/config.sh
   if [ -n "${Cookie1}" ]; then
-    bash jd.sh hangup 2>/dev/null
+    bash ${JD_DIR}/jd.sh hangup
     echo -e "挂机程序启动成功...\n"
   else
     echo -e "config.sh中还未填入有效的Cookie，可能是首次部署容器，因此不启动挂机程序...\n"
