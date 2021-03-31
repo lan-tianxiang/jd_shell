@@ -93,7 +93,7 @@ docker rmi $(docker images jd -q)
 
 ***
 
-### [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki) 和各文件注释都含有大量教程，请自行翻阅❗❗
+### [WIKI](https://github.com/lan-tianxiang/jd_shell/wiki/Instruction) 和各文件注释都含有大量教程，请自行翻阅❗❗
 
 <details>
 <summary> </summary>
