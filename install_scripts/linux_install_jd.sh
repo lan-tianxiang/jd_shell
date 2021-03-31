@@ -101,7 +101,7 @@ crontab ${JdDir}/config/crontab.list
 echo -e "\n3. 执行 git_pull.sh 进行脚本更新以及定时文件更新"
 bash ${JdDir}/git_pull.sh
 
-if [ ! -x "$(command -v node)" ]; then
+if [ ! -x "$(command -v pm2)" ]; then
     echo "正在安装pm2,方便后续集成并发功能"
     npm install pm2@latest -g
 fi
