@@ -275,7 +275,11 @@ function panelinit {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
   echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
   fi
-  node server.js
+  if [ ! -x "$(command -v node)" ]; then
+      echo "正在安装pm2,方便后续集成并发功能"
+      npm install pm2@latest -g
+  fi
+  pm2 start server.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   fi
