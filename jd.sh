@@ -303,7 +303,7 @@ function panelinfo {
 }
 
 ## 面板更新
-function panelinfo {
+function panelud {
   cd ${PanelDir}
   paneloff
   Npm_InstallSub
