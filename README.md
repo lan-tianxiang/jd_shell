@@ -4,8 +4,8 @@
 
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">JD SHELL</h2>
- <p align="center">自动化一键完成Bean采集</p>
+ <h2 align="center">JS SHELL</h2>
+ <p align="center">自动化一键完成JS库管理</p>
 </p>
   <p align="center">
     <a href="https://github.com/lan-tianxiang/jd_shell/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/lan-tianxiang/jd_shell.svg?label=License&style=for-the-badge"></a>
