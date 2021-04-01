@@ -15,7 +15,7 @@ var logger = require('morgan')
 let config = {
   listen: {
     ip: '0.0.0.0',
-    port: 6666
+    port: 9999
   },
   user: {
     name: null,
