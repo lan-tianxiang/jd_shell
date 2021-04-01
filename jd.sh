@@ -283,6 +283,7 @@ function panelon {
       npm install pm2@latest -g
   fi
   pm2 flush
+  shelloff
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
@@ -323,7 +324,7 @@ function shellon {
 ## webshellon
 function shelloff {
   cd ${ShellDir}/webshell
-  pm2 stop index.js
+  pm2 stop ecosystem.config.js
   pm2 delete ecosystem.config.js
 }
 
