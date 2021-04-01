@@ -3,7 +3,7 @@
 ## Author: lan-tianxiang
 ## Source: https://github.com/lan-tianxiang/jd_shell
 ## Modified： 2021-03-31
-## Version： v3.14.0
+## Version： v3.15.0
 
 ## 路径
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
