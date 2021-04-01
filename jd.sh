@@ -283,7 +283,6 @@ function panelon {
       npm install pm2@latest -g
   fi
   pm2 flush
-  shelloff
   cd ${PanelDir}
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
@@ -317,7 +316,6 @@ function panelud {
 
 ## webshellon
 function shellon {
-  paneloff
   [ -f ${WebshellDir}/package.json ] && PackageListOld=$(cat ${WebshellDir}/package.json)
   cd ${WebshellDir}
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
@@ -353,7 +351,7 @@ function shellon {
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   else
-  echo -e "打开浏览器，地址为   你的IP:5678/ssh/host/127.0.0.1\n"
+  echo -e "打开浏览器，地址为   你的IP:6666/ssh/host/127.0.0.1\n"
   fi
 }
 ## webshellon
