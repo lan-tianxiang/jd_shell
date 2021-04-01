@@ -138,11 +138,11 @@
                 .click(function () {
                     let confirmTxt, cmd;
                     switch (this.id) {
-                        case 'git_pull':
+                        case 'git_pull.sh':
                             confirmTxt = '确认更新项目文件与活动脚本？';
                             cmd = `bash ${this.id}`;
                             break;
-                        case 'export_sharecodes':
+                        case 'export_sharecodes.sh':
                             confirmTxt = '确认格式化导出互助码？';
                             cmd = `bash ${this.id}`;
                             break;
@@ -150,7 +150,7 @@
                             confirmTxt = '确认启动/重启挂机程序？';
                             cmd = `bash jd.sh ${this.id}`;
                             break;
-                        case 'rm_log':
+                        case 'rm_log.sh':
                             confirmTxt = '确认删除日志？';
                             cmd = `bash ${this.id}`;
                             break;
