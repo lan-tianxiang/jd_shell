@@ -172,17 +172,16 @@ function Random_Delay() {
 ## 使用说明
 function Help {
   echo -e "本脚本的用法为："
-  echo -e "1. bash ${HelpJd} xxx       # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
-  echo -e "2. bash ${HelpJd} xxx now   # 无论是否设置了随机延迟，均立即运行"
+  echo -e "1. bash ${HelpJd} jd_xxx       # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
+  echo -e "2. bash ${HelpJd} jd_xxx now   # 无论是否设置了随机延迟，均立即运行"
   echo -e "3. bash ${HelpJd} hangup    # 重启挂机程序"
   echo -e "4. bash ${HelpJd} panelon   # 开启控制面板"
   echo -e "5. bash ${HelpJd} paneloff  # 关闭控制面板"
   echo -e "5. bash ${HelpJd} panelinfo # 控制面板状态"
   echo -e "5. bash ${HelpJd} panelud # 更新面板(不丢失数据)"
   echo -e "6 bash ${HelpJd} resetpwd   # 重置控制面板用户名和密码"
-  echo -e "\n针对用法1、用法2中的\"xxx\"，无需输入后缀\".js\"，另外，如果前缀是\"jd_\"的话前缀也可以省略。"
-  echo -e "比如：   bash jd.sh jd_bean_change"
-  echo -e "当前有以下脚本可以运行（仅列出以jd_、jr_、jx_开头的脚本）："
+  echo -e "7. bash ${HelpJd} shellon   # 开启shell面板"
+  echo -e "8. bash ${HelpJd} shelloff  # 关闭shell面板"
   cd ${ScriptsDir}
   for ((i=0; i<${#ListScripts[*]}; i++)); do
     Name=$(grep "new Env" ${ListScripts[i]} | awk -F "'|\"" '{print $2}')
@@ -289,6 +288,8 @@ function panelon {
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+  else
+  echo -e "打开浏览器，地址为你的IP:5678\n"
   fi
 }
 
@@ -349,6 +350,11 @@ function shellon {
   cd ${WebshellDir}
   pm2 flush
   pm2 start ecosystem.config.js
+  if [ $? -ne 0 ]; then
+  echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+  else
+  echo -e "打开浏览器，地址为   你的IP:5678/ssh/host/127.0.0.1\n"
+  fi
 }
 ## webshellon
 function shelloff {
