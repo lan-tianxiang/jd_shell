@@ -134,25 +134,25 @@
             });
 
 
-            $('#git_pull.sh, #export_sharecodes.sh, #hangup, #rm_log.sh, #resetpwd, #jd_delCoupon, #crazy_joy_coin, #run_all')
+            $('#git_pull, #export_sharecodes, #hangup, #rm_log, #resetpwd, #jd_delCoupon, #crazy_joy_coin, #run_all')
                 .click(function () {
                     let confirmTxt, cmd;
                     switch (this.id) {
-                        case 'git_pull.sh':
+                        case 'git_pull':
                             confirmTxt = '确认更新项目文件与活动脚本？';
-                            cmd = `bash ${this.id}`;
+                            cmd = `bash ${this.id}.sh`;
                             break;
-                        case 'export_sharecodes.sh':
+                        case 'export_sharecodes':
                             confirmTxt = '确认格式化导出互助码？';
-                            cmd = `bash ${this.id}`;
+                            cmd = `bash ${this.id}.sh`;
                             break;
                         case 'hangup':
                             confirmTxt = '确认启动/重启挂机程序？';
                             cmd = `bash jd.sh ${this.id}`;
                             break;
-                        case 'rm_log.sh':
+                        case 'rm_log':
                             confirmTxt = '确认删除日志？';
-                            cmd = `bash ${this.id}`;
+                            cmd = `bash ${this.id}.sh`;
                             break;
                         case 'resetpwd':
                             confirmTxt = '确认重置用户名与密码？';
