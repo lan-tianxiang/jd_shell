@@ -6,6 +6,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Sync to Gitee
         uses: wearerequired/git-mirror-action@master
