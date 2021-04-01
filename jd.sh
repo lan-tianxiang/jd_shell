@@ -10,6 +10,7 @@ ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 [ ${JD_DIR} ] && HelpJd=jd.sh || HelpJd=jd.sh
 ScriptsDir=${ShellDir}/scripts
 PanelDir=${ShellDir}/panel
+WebshellDir=${ShellDir}/webshell
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
 FileConftemp=${ConfigDir}/config.sh.temp
@@ -284,7 +285,7 @@ function panelon {
   fi
   pm2 flush
   shelloff
-  pm2 start ecosystem.config.js
+  pm2 start ${PanelDir}/ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   fi
@@ -316,14 +317,14 @@ function panelud {
 ## webshellon
 function shellon {
   paneloff
-  cd ${ShellDir}/webshell
+  cd ${WebshellDir}
   Npm_InstallSub
   pm2 flush
   pm2 start ecosystem.config.js
 }
 ## webshellon
 function shelloff {
-  cd ${ShellDir}/webshell
+  cd ${WebshellDir}
   pm2 stop ecosystem.config.js
   pm2 delete ecosystem.config.js
 }
