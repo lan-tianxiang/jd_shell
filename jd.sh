@@ -403,8 +403,10 @@ case $# in
       panelinfo
     elif [[ $1 == panelud ]]; then
       panelud
-    elif [[ $1 == webshell ]]; then
-      webshell
+    elif [[ $1 == shellon ]]; then
+      shellon
+    elif [[ $1 == shelloff ]]; then
+      shelloff
     else
       Run_Normal $1
     fi
