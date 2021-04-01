@@ -1,6 +1,6 @@
-## Version: v3.7.1
-## Date: 2021-03-29
-## Update Content: 补充注释，无参数变动
+## Version: v3.8.1
+## Date: 2021-04-01
+## Update Content: 新增14.京东手机狂欢城助力填写区域。开启自动助力的用户无需理会本次更新！！！
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
 ## 如需更新，请参考WIKI（https://github.com/lan-tianxiang/jd_shell/wiki）中"如何更新配置文件"部分的操作说明，进行智能比对后修改。
@@ -370,6 +370,17 @@ MyGlobalB=""
 
 ForOtherGlobal1=""
 ForOtherGlobal2=""
+
+
+################################## 14. 定义京东手机狂欢城互助（选填） ##################################
+## 具体填法及要求详见本文件最下方“互助码填法示例”
+MyCarnivalcity1=""
+MyCarnivalcity2=""
+MyCarnivalcityA=""
+MyCarnivalcityB=""
+
+ForOtherCarnivalcity1=""
+ForOtherCarnivalcity2=""
 
 
 ##################################################################################################
