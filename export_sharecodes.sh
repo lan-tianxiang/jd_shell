@@ -128,7 +128,8 @@ function Cat_Scodes() {
 ## 汇总
 function Cat_All() {
   echo -e "\n# 从最后一个日志提取互助码，受日志内容影响，仅供参考。"
-  echo -e "\n# 用法： 检查无误后，将以下内容直接复制到config.sh的最后面专区中！！！"
+  echo -e "\n# 手动填写用法： 检查无误后，将以下内容直接复制到config.sh的最后面专区中！！！"
+  echo -e "\n# 开启自动助力的用户请勿理会以上内容！！！"
   echo -e "\n################################" 
   for ((i = 0; i < ${#Name1[*]}; i++)); do
     echo -e "\n# ${Name2[i]}："
