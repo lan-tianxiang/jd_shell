@@ -11,3 +11,4 @@ drop_task
 send_count
 jd.sh.*
 export_sharecodes.sh.*
+run_all.sh
