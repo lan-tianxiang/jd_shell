@@ -285,7 +285,8 @@ function panelon {
   fi
   pm2 flush
   shelloff
-  pm2 start ${PanelDir}/ecosystem.config.js
+  cd ${PanelDir}
+  pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   fi
