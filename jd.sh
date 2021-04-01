@@ -318,8 +318,36 @@ function panelud {
 ## webshellon
 function shellon {
   paneloff
+  [ -f ${WebshellDir}/package.json ] && PackageListOld=$(cat ${WebshellDir}/package.json)
   cd ${WebshellDir}
-  Npm_InstallSub
+  if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
+    echo -e "检测到package.json有变化，运行 npm install...\n"
+    Npm_InstallSub
+    if [ $? -ne 0 ]; then
+      echo -e "\nnpm install 运行不成功，自动删除 ${WebshellDir}/node_modules 后再次尝试一遍..."
+      rm -rf ${WebshellDir}/node_modules
+    fi
+    echo
+  fi
+
+  if [ ! -d ${WebshellDir}/node_modules ]; then
+    echo -e "运行 npm install...\n"
+    Npm_InstallSub
+    if [ $? -ne 0 ]; then
+      echo -e "\nnpm install 运行不成功，自动删除 ${WebshellDir}/node_modules...\n"
+      echo -e "请进入 ${WebshellDir} 目录后按照wiki教程手动运行 npm install...\n"
+      echo -e "当 npm install 失败时，如果检测到有新任务或失效任务，只会输出日志，不会自动增加或删除定时任务...\n"
+      echo -e "3...\n"
+      sleep 1
+      echo -e "2...\n"
+      sleep 1
+      echo -e "1...\n"
+      sleep 1
+      rm -rf ${WebshellDir}/node_modules
+    fi
+  fi
+  echo -e "记得开启前先认真看Wiki中，功能页里关于Webshell的事项\n"
+  cd ${WebshellDir}
   pm2 flush
   pm2 start ecosystem.config.js
 }
