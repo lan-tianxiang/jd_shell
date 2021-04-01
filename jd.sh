@@ -395,6 +395,8 @@ case $# in
       panelinfo
     elif [[ $1 == panelud ]]; then
       panelud
+    elif [[ $1 == webshell ]]; then
+      webshell
     else
       Run_Normal $1
     fi
