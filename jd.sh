@@ -351,7 +351,7 @@ function shellon {
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   else
-  echo -e "确认看过WIKI，打开浏览器，地址为   你的IP:9999/ssh/host/127.0.0.1\n"
+  echo -e "确认看过WIKI，打开浏览器，地址为   127.0.0.1:9999/ssh/host/127.0.0.1\n"
   fi
 }
 ## webshellon
