@@ -282,7 +282,6 @@ function panelon {
       echo "正在安装pm2,方便后续集成并发功能"
       npm install pm2@latest -g
   fi
-  pm2 flush
   cd ${PanelDir}
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
@@ -297,6 +296,7 @@ function panelon {
 function paneloff {
   cd ${PanelDir}
   pm2 delete server
+  pm2 flush
 }
 
 ## 面板状态
@@ -307,6 +307,7 @@ function panelinfo {
 
 ## 面板更新
 function panelud {
+  pm2 flush
   cd ${PanelDir}
   paneloff
   Npm_InstallSub
@@ -346,7 +347,6 @@ function shellon {
   fi
   echo -e "记得开启前先认真看Wiki中，功能页里关于Webshell的事项\n"
   cd ${WebshellDir}
-  pm2 flush
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
@@ -356,6 +356,7 @@ function shellon {
 }
 ## webshellon
 function shelloff {
+  pm2 flush
   cd ${WebshellDir}
   pm2 delete ecosystem.config.js
 }
