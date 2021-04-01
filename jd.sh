@@ -128,8 +128,8 @@ function Combin_All() {
   export JDCFD_SHARECODES=$(Combin_Sub ForOtherCfd)
   ## 环球挑战赛(jd_global.js)
   export JDGLOBAL_SHARECODES=$(Combin_Sub ForOtherGlobal "MjNtTnVxbXJvMGlWTHc5Sm9kUXZ3VUM4R241aDFjblhybHhTWFYvQmZUOD0")
-  ## 城城领现金(jd_city.js)
-  export CITY_SHARECODES=$(Combin_Sub ForOtherCity)
+  ## 京东手机狂欢城(jd_carnivalcity.js)
+  export JD818_SHARECODES=$(Combin_Sub ForOtherCarnivalcity "ecdc191f-38f6-4c9a-9264-9d444fbaa43e@032592c7-8ea2-4224-ae7b-491256870123@f1739361-c8ab-4b0f-ab30-8ee3269b4519")
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
