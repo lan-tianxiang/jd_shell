@@ -283,7 +283,7 @@ function panelon {
       npm install pm2@latest -g
   fi
   pm2 flush
-  pm2 start server.js
+  pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   fi
@@ -293,14 +293,14 @@ function panelon {
 ## 关闭面板
 function paneloff {
   cd ${PanelDir}
-  pm2 stop server.js
+  pm2 stop ecosystem.config.js
   pm2 delete server
 }
 
 ## 面板状态
 function panelinfo {
   cd ${PanelDir}
-  pm2 status server.js
+  pm2 status ecosystem.config.js
 }
 
 ## 面板更新
@@ -318,13 +318,13 @@ function shellon {
   cd ${ShellDir}/webshell
   Npm_InstallSub
   pm2 flush
-  pm2 start index.js
+  pm2 start ecosystem.config.js
 }
 ## webshellon
 function shelloff {
   cd ${ShellDir}/webshell
   pm2 stop index.js
-  pm2 delete index.js
+  pm2 delete ecosystem.config.js
 }
 
 ## 重置密码
