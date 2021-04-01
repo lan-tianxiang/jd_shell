@@ -282,6 +282,7 @@ function panelon {
       echo "正在安装pm2,方便后续集成并发功能"
       npm install pm2@latest -g
   fi
+  pm2 flush
   pm2 start server.js
   if [ $? -ne 0 ]; then
   echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
@@ -311,12 +312,19 @@ function panelud {
   panelon
 }
 
-## 面板更新
-function webshell {
+## webshellon
+function shellon {
   paneloff
   cd ${ShellDir}/webshell
   Npm_InstallSub
+  pm2 flush
   pm2 start index.js
+}
+## webshellon
+function shelloff {
+  cd ${ShellDir}/webshell
+  pm2 stop index.js
+  pm2 delete index.js
 }
 
 ## 重置密码
