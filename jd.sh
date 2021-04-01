@@ -313,9 +313,9 @@ function panelud {
 
 ## 面板更新
 function webshell {
+  paneloff
   cd ${ShellDir}/webshell
   Npm_InstallSub
-  pm2 update
   pm2 start index.js
 }
 
