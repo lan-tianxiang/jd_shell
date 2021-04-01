@@ -296,7 +296,6 @@ function panelon {
 ## 关闭面板
 function paneloff {
   cd ${PanelDir}
-  pm2 stop server
   pm2 delete server
 }
 
@@ -354,7 +353,6 @@ function shellon {
 ## webshellon
 function shelloff {
   cd ${WebshellDir}
-  pm2 stop ecosystem.config.js
   pm2 delete ecosystem.config.js
 }
 
