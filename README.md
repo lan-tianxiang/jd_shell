@@ -90,13 +90,6 @@
 
 - [Win10安装 WSL Ubuntu](https://github.com/lan-tianxiang/jd_shell/wiki/Win10)  🔻
 
-### 修复或跨版本更新：
-- 进入项目安装目录
-
-- 执行修复与升级脚本
-
-      bash repair.sh
-> 注意：1. 此脚本适用于任何脚本出现异常，无法更新，出现未知错误时运行。不会清除账号以及配置数据，请放心食用！！
 
 ***
 
