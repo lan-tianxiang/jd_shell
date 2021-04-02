@@ -57,10 +57,10 @@ TempBlockCookie=""
 ################################## 是否添加 DIY 脚本（选填） ##################################
 ## 如果您自己会写shell脚本，并且希望在每次git_pull.sh这个脚本运行时，额外运行您的DIY脚本，请赋值为 "true"
 ## 同时，请务必将您的脚本命名为 diy.sh (只能叫这个文件名)，放在 config 目录下
-EnableExtraShell="true"
+EnableExtraShell="false"
 
 ## 如果您想自动同步您的 DIY 脚本，请赋值为 "true"
-EnableExtraShellUpdate="true"
+EnableExtraShellUpdate="false"
 
 ## DIY 脚本同步地址链接：（默认使用项目中的 DIY 脚本）
 #EnableExtraShellURL=""
