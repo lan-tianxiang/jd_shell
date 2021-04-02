@@ -36,6 +36,8 @@ jobs:
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
     - name: push Master
       run: |
+        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+        echo "Asia/Shanghai" > /etc/timezone
         cd v3
         perl -i -pe "s|url \= git\@github.com:lan-tianxiang\/jd_shell.git|url \= git\@gitee.com:highdimen\/jd_shell.git|g" .git/config
         cat .git/config
