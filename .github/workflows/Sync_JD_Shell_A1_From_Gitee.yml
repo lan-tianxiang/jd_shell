@@ -26,7 +26,7 @@ jobs:
         mkdir -p ~/.ssh
         echo -e "${{ secrets.RSA_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com > ~/.ssh/known_hosts
+        ssh-keyscan gitee.com > ~/.ssh/known_hosts
     - name: Clone Master
       run: |
         git clone -b A1 git@gitee.com:highdimen/jd_shell.git A1
