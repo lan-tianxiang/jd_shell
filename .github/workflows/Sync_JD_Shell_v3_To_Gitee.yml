@@ -36,7 +36,7 @@ jobs:
         ssh-keyscan gitee.com > ~/.ssh/known_hosts
     - name: push Master
       run: |
-        cd master
+        cd v3
         perl -i -pe "s|url \= git\@github.com:lan-tianxiang\/jd_shell.git|url \= git\@gitee.com:highdimen\/jd_shell.git|g" .git/config
         cat .git/config
         echo "## "$(date) >> jd.sh
