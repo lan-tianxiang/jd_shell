@@ -39,7 +39,7 @@ jobs:
         cd v3
         perl -i -pe "s|url \= git\@github.com:lan-tianxiang\/jd_shell.git|url \= git\@gitee.com:highdimen\/jd_shell.git|g" .git/config
         cat .git/config
-        echo "## "$(date) >> jd.sh
+        echo "## UpdateTime: "$(date) >> jd.sh
         git add .
         git commit -m "update"
         git push -f
