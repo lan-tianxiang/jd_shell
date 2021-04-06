@@ -6,7 +6,10 @@
 ## Version： v3.15.0
 
 ## 路径
-ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
+ShellDir=${JD_DIR:-$(
+  cd $(dirname $0)
+  pwd
+)}
 [ ${JD_DIR} ] && HelpJd=jd.sh || HelpJd=jd.sh
 ScriptsDir=${ShellDir}/scripts
 PanelDir=${ShellDir}/panel
@@ -17,7 +20,10 @@ FileConftemp=${ConfigDir}/config.sh.temp
 FileConfSample=${ShellDir}/sample/config.sh.sample
 panelpwd=${ConfigDir}/auth.json
 LogDir=${ShellDir}/log
-ListScripts=($(cd ${ScriptsDir}; ls *.js | grep -E "j[drx]_"))
+ListScripts=($(
+  cd ${ScriptsDir}
+  ls *.js | grep -E "j[drx]_"
+))
 ListCron=${ConfigDir}/crontab.list
 
 ## 常量
@@ -25,9 +31,8 @@ AutoHelpme=false
 TasksTerminateTime=0
 
 ## 导入config.sh
-function Import_Conf {
-  if [ -f ${FileConf} ]
-  then
+function Import_Conf() {
+  if [ -f ${FileConf} ]; then
     . ${FileConf}
     if [ -z "${Cookie1}" ]; then
       echo -e "请先在config.sh中配置好Cookie...\n"
@@ -40,26 +45,25 @@ function Import_Conf {
 }
 
 ## 更新crontab
-function Detect_Cron {
+function Detect_Cron() {
   if [[ $(cat ${ListCron}) != $(crontab -l) ]]; then
     crontab ${ListCron}
   fi
 }
 
 ## 用户数量UserSum
-function Count_UserSum {
-  for ((i=1; i<=1000; i++)); do
+function Count_UserSum() {
+  for ((i = 1; i <= 1000; i++)); do
     Tmp=Cookie$i
     CookieTmp=${!Tmp}
     [[ ${CookieTmp} ]] && UserSum=$i || break
   done
 }
 
-
 ## 组合Cookie和互助码子程序
-function Combin_Sub {
+function Combin_Sub() {
   CombinAll=""
-  for ((i=1; i<=${UserSum}; i++)); do
+  for ((i = 1; i <= ${UserSum}; i++)); do
     for num in ${TempBlockCookie}; do
       if [[ $i -eq $num ]]; then
         continue 2
@@ -68,32 +72,32 @@ function Combin_Sub {
     Tmp1=$1$i
     Tmp2=${!Tmp1}
     case $# in
+    1)
+      CombinAll="${CombinAll}&${Tmp2}"
+      ;;
+    2)
+      CombinAll="${CombinAll}&${Tmp2}@$2"
+      ;;
+    3)
+      if [ $(($i % 2)) -eq 1 ]; then
+        CombinAll="${CombinAll}&${Tmp2}@$2"
+      else
+        CombinAll="${CombinAll}&${Tmp2}@$3"
+      fi
+      ;;
+    4)
+      case $(($i % 3)) in
       1)
-        CombinAll="${CombinAll}&${Tmp2}"
-        ;;
-      2)
         CombinAll="${CombinAll}&${Tmp2}@$2"
         ;;
-      3)
-        if [ $(($i % 2)) -eq 1 ]; then
-          CombinAll="${CombinAll}&${Tmp2}@$2"
-        else
-          CombinAll="${CombinAll}&${Tmp2}@$3"
-        fi
+      2)
+        CombinAll="${CombinAll}&${Tmp2}@$3"
         ;;
-      4)
-        case $(($i % 3)) in
-          1)
-            CombinAll="${CombinAll}&${Tmp2}@$2"
-            ;;
-          2)
-            CombinAll="${CombinAll}&${Tmp2}@$3"
-            ;;
-          0)
-            CombinAll="${CombinAll}&${Tmp2}@$4"
-            ;;
-        esac
+      0)
+        CombinAll="${CombinAll}&${Tmp2}@$4"
         ;;
+      esac
+      ;;
     esac
   done
   echo ${CombinAll} | perl -pe "{s|^&||; s|^@+||; s|&@|&|g; s|@+|@|g}"
@@ -145,12 +149,12 @@ function Trans_JD_BEAN_SIGN_NOTIFY() {
 }
 
 ## 转换UN_SUBSCRIBES
-function Trans_UN_SUBSCRIBES {
+function Trans_UN_SUBSCRIBES() {
   export UN_SUBSCRIBES="${goodPageSize}\n${shopPageSize}\n${jdUnsubscribeStopGoods}\n${jdUnsubscribeStopShop}"
 }
 
 ## 申明全部变量
-function Set_Env {
+function Set_Env() {
   Count_UserSum
   Combin_All
   Trans_JD_BEAN_SIGN_NOTIFY
@@ -170,7 +174,7 @@ function Random_Delay() {
 }
 
 ## 使用说明
-function Help {
+function Help() {
   echo -e "本脚本的用法为："
   echo -e "1. bash ${HelpJd} jd_xxx       # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数"
   echo -e "2. bash ${HelpJd} jd_xxx now   # 无论是否设置了随机延迟，均立即运行"
@@ -183,41 +187,38 @@ function Help {
   echo -e "7. bash ${HelpJd} shellon   # 开启shell面板"
   echo -e "8. bash ${HelpJd} shelloff  # 关闭shell面板"
   cd ${ScriptsDir}
-  for ((i=0; i<${#ListScripts[*]}; i++)); do
+  for ((i = 0; i < ${#ListScripts[*]}; i++)); do
     Name=$(grep "new Env" ${ListScripts[i]} | awk -F "'|\"" '{print $2}')
     echo -e "$(($i + 1)).${Name}：${ListScripts[i]}"
   done
 }
 
 ## nohup
-function Run_Nohup {
-  for js in ${HangUpJs}
-  do
+function Run_Nohup() {
+  for js in ${HangUpJs}; do
     if [[ $(ps -ef | grep "${js}" | grep -v "grep") != "" ]]; then
       ps -ef | grep "${js}" | grep -v "grep" | awk '{print $2}' | xargs kill -9
     fi
   done
 
-  for js in ${HangUpJs}
-  do
+  for js in ${HangUpJs}; do
     [ ! -d ${LogDir}/${js} ] && mkdir -p ${LogDir}/${js}
     LogTime=$(date "+%Y-%m-%d-%H-%M-%S")
     LogFile="${LogDir}/${js}/${LogTime}.log"
-    nohup node ${js}.js > ${LogFile} &
+    nohup node ${js}.js >${LogFile} &
   done
 }
 
 ## pm2
-function Run_Pm2 {
+function Run_Pm2() {
   pm2 flush
-  for js in ${HangUpJs}
-  do
+  for js in ${HangUpJs}; do
     pm2 restart ${js}.js || pm2 start ${js}.js
   done
 }
 
 ## 运行挂机脚本
-function Run_HangUp {
+function Run_HangUp() {
   Import_Conf && Detect_Cron && Set_Env
   HangUpJs="jd_crazy_joy_coin"
   cd ${ScriptsDir}
@@ -229,12 +230,10 @@ function Run_HangUp {
 }
 
 ## npm install 子程序，判断是否为安卓，判断是否安装有yarn
-function Npm_InstallSub {
-  if [ -n "${isTermux}" ]
-  then
+function Npm_InstallSub() {
+  if [ -n "${isTermux}" ]; then
     npm install --no-bin-links || npm install --no-bin-links --registry=https://registry.npm.taobao.org
-  elif ! type yarn >/dev/null 2>&1
-  then
+  elif ! type yarn >/dev/null 2>&1; then
     npm install || npm install --registry=https://registry.npm.taobao.org
   else
     echo -e "检测到本机安装了 yarn，使用 yarn 替代 npm...\n"
@@ -243,7 +242,16 @@ function Npm_InstallSub {
 }
 
 ## panel install
-function panelon {
+function panelon() {
+  if [ ! -d ${PanelDir}/node_modules ]; then
+    echo -e "运行 npm install...\n"
+    Npm_InstallSub
+    if [ $? -ne 0 ]; then
+      echo -e "\nnpm install 运行不成功，自动删除 ${ScriptsDir}/node_modules 后再次尝试一遍..."
+      rm -rf ${PanelDir}/node_modules
+    fi
+  fi
+
   [ -f ${PanelDir}/package.json ] && PackageListOld=$(cat ${PanelDir}/package.json)
   cd ${PanelDir}
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
@@ -256,57 +264,44 @@ function panelon {
     echo
   fi
 
-  if [ ! -d ${PanelDir}/node_modules ]; then
-    echo -e "运行 npm install...\n"
-    Npm_InstallSub
-    if [ $? -ne 0 ]; then
-      echo -e "\nnpm install 运行不成功，自动删除 ${ScriptsDir}/node_modules...\n"
-      echo -e "请进入 ${ScriptsDir} 目录后按照wiki教程手动运行 npm install...\n"
-      echo -e "当 npm install 失败时，如果检测到有新任务或失效任务，只会输出日志，不会自动增加或删除定时任务...\n"
-      echo -e "3...\n"
-      sleep 1
-      echo -e "2...\n"
-      sleep 1
-      echo -e "1...\n"
-      sleep 1
-      rm -rf ${PanelDir}/node_modules
-    fi
-  fi
   echo -e "记得开启前先认真看Wiki中，功能页里关于控制面板的事项\n"
-  sleep 1
+
   if [ ! -f "$panelpwd" ]; then
-  cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
-  echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
+    cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
+    echo -e "检测到未设置密码，用户名：admin，密码：adminadmin\n"
   fi
   if [ ! -x "$(command -v pm2)" ]; then
-      echo "正在安装pm2,方便后续集成并发功能"
-      npm install pm2@latest -g
+    echo "正在安装pm2,方便后续集成并发功能"
+    npm install pm2@latest -g
   fi
   cd ${PanelDir}
-  pm2 start ecosystem.config.js
-  if [ $? -ne 0 ]; then
-  echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+  if type pm2 >/dev/null 2>&1; then
+    pm2 start ecosystem.config.js
   else
-  echo -e "确认看过WIKI，打开浏览器，地址为你的127.0.0.1:5678\n"
+    nohup node server.js >/dev/null 2>&1 &
+  fi
+  if [ $? -ne 0 ]; then
+    echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+  else
+    echo -e "确认看过WIKI，打开浏览器，地址为你的127.0.0.1:5678\n"
   fi
 }
 
-
 ## 关闭面板
-function paneloff {
+function paneloff() {
   cd ${PanelDir}
   pm2 delete server
   pm2 flush
 }
 
 ## 面板状态
-function panelinfo {
+function panelinfo() {
   cd ${PanelDir}
   pm2 status ecosystem.config.js
 }
 
 ## 面板更新
-function panelud {
+function panelud() {
   pm2 flush
   cd ${PanelDir}
   paneloff
@@ -316,7 +311,7 @@ function panelud {
 }
 
 ## webshellon
-function shellon {
+function shellon() {
   [ -f ${WebshellDir}/package.json ] && PackageListOld=$(cat ${WebshellDir}/package.json)
   cd ${WebshellDir}
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
@@ -349,31 +344,31 @@ function shellon {
   cd ${WebshellDir}
   pm2 start ecosystem.config.js
   if [ $? -ne 0 ]; then
-  echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
+    echo -e "开启失败，请截图并复制错误代码并提交Issues！\n"
   else
-  echo -e "确认看过WIKI，打开浏览器，地址为   127.0.0.1:9999/ssh/host/127.0.0.1\n"
+    echo -e "确认看过WIKI，打开浏览器，地址为   127.0.0.1:9999/ssh/host/127.0.0.1\n"
   fi
 }
 ## webshellon
-function shelloff {
+function shelloff() {
   pm2 flush
   cd ${WebshellDir}
   pm2 delete ecosystem.config.js
 }
 
 ## 重置密码
-function Reset_Pwd {
+function Reset_Pwd() {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
   echo -e "控制面板重置成功，用户名：admin，密码：adminadmin\n"
 }
 
 ## 运行京东脚本
-function Run_Normal {
+function Run_Normal() {
   Import_Conf && Detect_Cron && Set_Env
 
   if [ ${AutoHelpme} = true ]; then
     if [ -f ${LogDir}/export_sharecodes/export_sharecodes.log ]; then
-      [ ! -s ${FileConftemp} ] && cp -f ${FileConf} ${ConfigDir}/config.sh.temp && cat ${LogDir}/export_sharecodes/export_sharecodes.log >> ${ConfigDir}/config.sh.temp
+      [ ! -s ${FileConftemp} ] && cp -f ${FileConf} ${ConfigDir}/config.sh.temp && cat ${LogDir}/export_sharecodes/export_sharecodes.log >>${ConfigDir}/config.sh.temp
       FileConf=${ConfigDir}/config.sh.temp
       Import_Conf && Detect_Cron && Set_Env
     else
@@ -382,15 +377,14 @@ function Run_Normal {
   else
     echo "0000"
   fi
-  
+
   FileNameTmp1=$(echo $1 | perl -pe "s|\.js||")
   FileNameTmp2=$(echo $1 | perl -pe "{s|jd_||; s|\.js||; s|^|jd_|}")
   SeekDir="${ScriptsDir} ${ScriptsDir}/backUp ${ConfigDir}"
   FileName=""
   WhichDir=""
 
-  for dir in ${SeekDir}
-  do
+  for dir in ${SeekDir}; do
     if [ -f ${dir}/${FileNameTmp1}.js ]; then
       FileName=${FileNameTmp1}
       WhichDir=${dir}
@@ -401,16 +395,15 @@ function Run_Normal {
       break
     fi
   done
-  
-  if [ -n "${FileName}" ] && [ -n "${WhichDir}" ]
-  then
+
+  if [ -n "${FileName}" ] && [ -n "${WhichDir}" ]; then
     [ $# -eq 1 ] && Random_Delay
     LogTime=$(date "+%Y-%m-%d-%H-%M-%S")
     LogFile="${LogDir}/${FileName}/${LogTime}.log"
     [ ! -d ${LogDir}/${FileName} ] && mkdir -p ${LogDir}/${FileName}
     cd ${WhichDir}
-#    env
-    [ ${TasksTerminateTime} = 0 ] &&  node ${FileName}.js | tee ${LogFile}
+    #    env
+    [ ${TasksTerminateTime} = 0 ] && node ${FileName}.js | tee ${LogFile}
     [ ${TasksTerminateTime} -ne 0 ] && timeout ${TasksTerminateTime} node ${FileName}.js | tee ${LogFile}
   else
     echo -e "\n在${ScriptsDir}、${ScriptsDir}/backUp、${ConfigDir}三个目录下均未检测到 $1 脚本的存在，请确认...\n"
@@ -420,41 +413,41 @@ function Run_Normal {
 
 ## 命令检测
 case $# in
-  0)
-    echo
+0)
+  echo
+  Help
+  ;;
+1)
+  if [[ $1 == hangup ]]; then
+    Run_HangUp
+  elif [[ $1 == resetpwd ]]; then
+    Reset_Pwd
+  elif [[ $1 == panelon ]]; then
+    panelon
+  elif [[ $1 == paneloff ]]; then
+    paneloff
+  elif [[ $1 == panelinfo ]]; then
+    panelinfo
+  elif [[ $1 == panelud ]]; then
+    panelud
+  elif [[ $1 == shellon ]]; then
+    shellon
+  elif [[ $1 == shelloff ]]; then
+    shelloff
+  else
+    Run_Normal $1
+  fi
+  ;;
+2)
+  if [[ $2 == now ]]; then
+    Run_Normal $1 $2
+  else
+    echo -e "\n命令输入错误...\n"
     Help
-    ;;
-  1)
-    if [[ $1 == hangup ]]; then
-      Run_HangUp
-    elif [[ $1 == resetpwd ]]; then
-      Reset_Pwd
-    elif [[ $1 == panelon ]]; then
-      panelon
-    elif [[ $1 == paneloff ]]; then
-      paneloff
-    elif [[ $1 == panelinfo ]]; then
-      panelinfo
-    elif [[ $1 == panelud ]]; then
-      panelud
-    elif [[ $1 == shellon ]]; then
-      shellon
-    elif [[ $1 == shelloff ]]; then
-      shelloff
-    else
-      Run_Normal $1
-    fi
-    ;;
-  2)
-    if [[ $2 == now ]]; then
-      Run_Normal $1 $2
-    else
-      echo -e "\n命令输入错误...\n"
-      Help
-    fi
-    ;;
-  *)
-    echo -e "\n命令过多...\n"
-    Help
-    ;;
+  fi
+  ;;
+*)
+  echo -e "\n命令过多...\n"
+  Help
+  ;;
 esac
