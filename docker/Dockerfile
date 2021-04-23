@@ -2,9 +2,9 @@ FROM node:lts-alpine
 LABEL maintainer="LanTianXiang <evinedeng@foxmail.com>"
 ARG JD_BASE_URL=https://gitee.com/highdimen/jd_shell
 ARG JD_BASE_BRANCH=v3
-ARG JD_SCRIPTS_URL=https://gitee.com/highdimen/clone_scripts
+ARG JD_SCRIPTS_URL=https://github.com/demo2099/jd_jscripts
 ARG JD_SCRIPTS_BRANCH=master
-ARG JD_SCRIPTS2_URL=https://gitee.com/highdimen/jd_scripts
+ARG JD_SCRIPTS2_URL=
 ARG JD_SCRIPTS2_BRANCH=master
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     LANG=zh_CN.UTF-8 \
